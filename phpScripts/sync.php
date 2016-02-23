@@ -1,119 +1,128 @@
 <?php
+error_reporting(E_ALL);
 /*
     Entry point for sync operation server side	
 */
+include 'dbConnection.php';
 
-$db;
+//this is the user_id of the user that is trying to access server resources
+$user_id;
+$user_type;
 
-//scott's DB connection stuff
-function connectToDB() {
-    echo "connecting to DB\r\n\r\n";
-    global $db;
-        //create scotts database objects
-
-    //$dsn = 'mysql:host=mysql13.000webhost.com;dbname=a7033823_survey';
-    $dsn = 'mysql:host=localhost;dbname=remoteData';
-	//$username = 'a7033823_scott';
-    $username = 'root';
-	//$password = 'pass12';
-    $password = 'remember';
-	try {
-		$db = new PDO($dsn, $username, $password);
-		echo "You are connected to the database.\r\n\r\n";
-	}catch(PDOException $e){
-		$error_message = $e->getMessage();
-		echo "An error occurred while connecting to the database:
-		$error_message\r\n\r\n";
-	}
-    
-}
-
-function closeDB() {
-    global $db;
-    $db->close();
-}
 
 /*
-    Create prepared statement,
-    bind the parameters to the statement,
-    execute query,
-    echo results
-*/
-function insertOperation($params) {
-    echo "performing insert opperation\r\n\r\n";
-    global $db;
-    //query string
-    $stmt = "INSERT INTO coaches (id, firstname, lastname, phone, email) VALUES (:id, :firstname, :lastname, :phone, :email)";
-    if($db != NULL) {
-        $query = $db->prepare($stmt);
+    Every transmission to the server should have to validate.
+    This way we can make sure users are indeed valid users.
+    Also we can make sure a valid user only gets data which
+    is relevant to them.
     
-        //bind the params
-        $query->bindParam(':id', $params['id']);
-        $query->bindParam(':firstname', $params['firstname']);
-        $query->bindParam(':lastname', $params['lastname']);
-        $query->bindParam(':phone', $params['phone']);
-        $query->bindParam(':email', $params['email']);
-	
-        try {
+    returns 
+        0 if user didn't validate correctly
+        1 if user is an admin
+        2 if user is a coach
+        3 if user is player/parent/member whatever...
+*/
+function userValidation($values) {
+        global $user_type;
+        global $user_id;
+        
+        connectToDB();
+        if(isset($values['user_id']) && !empty($values['user_id'])) {
             
-            if($query->execute()) {
-                echo 'SUCCESS!!!\nInserted Values:\n'.$params['id'].', '.$params['firstname'].', '.$params['lastname'].', '.$params['phone'].', '.$params['email'].'\r\n\r\n'; 
-            } else {
-                echo "\nPDOStatement::errorInfo():\n";
-                $arr = $query->errorInfo();
-                print_r($arr);
-            }
+        } else {
+            echo "you didn't provide a valid user name\r\n";
+            return 0;
+        }
+        if(isset($values['password']) && !empty($values['password'])) {
             
-        } catch (PDOException $e) {
-            $error_message = $e->getMessage();
-		    echo "An error occurred while connecting to the database:
-		    $error_message\r\n\r\n";
+        } else {
+            echo "you didn't provide a valid password\r\n";
+            return 0;
         }
         
-    }
-
+        $user_type = getUserType($values);
+        $user_id = $values['user_id'];
+        return 1;
 }
 
-/*
-    Does a select all on Scott's db and echos the results
-*/
-function selectOperation($params) {
-    echo "performing select operation\r\n\r\n";
-    global $db;
-    
-    $query = 'SELECT * FROM coaches';
-
-    $allCoaches = $db->query($query);
-    
-    foreach($allCoaches as $aCoach) {
-        echo 'Coach '.$aCoach['id'].":\r\n  ".$aCoach['firstname']."\r\n  ".$aCoach['lastname']."\r\n  ".$aCoach['phone']."\r\n  ".$aCoach['email']."\r\n\r\n";
-    }
-}
-
-/*
-    Checks for data in the POST array.
-    If it has data it switches on the two possible command types.
-    
-*/
-if($_POST != NULL) {
-    
-    connectToDB();
-    
-    switch($_POST['command'])
+function adminCommandSwitch($values, $user_id) {
+    //admin can do anthing...
+    //echo "begin admin switch\r\n";
+    switch($values['command'])
     {
         case 'INSERT':
-            insertOperation($_POST);        //pass the $_POST array to the insertOperation
+            insertOperation($values);        
             break;
-            
+        case 'UPDATE':
+            updateOpertaion($values);
+            break;
+        case 'DELETE':
+            break;
         case 'SELECT':
-            $params = array($_POST['options']);
-            selectOperation($params);      //perform the select operation,
-                                           // I didn't really need to pass the $_POST array here...
+            selectOperation($values);                              
         break;
     }
-	
-    //closeDB();
+}
+
+function coachCommandSwitch($values, $user_id) {
+    //coach can do anything for now too...
+    switch($values['command'])
+    {
+        case 'INSERT':
+            insertOperation($values);        
+            break;
+        case 'UPDATE':
+            updateOpertaion($values);
+        case 'DELETE':
+            
+        case 'SELECT':
+            selectOperation($values);                              
+        break;
+    }
+}
+
+function userCommandSwitch($valuse, $user_id) {
+    //user can only update and select
+    switch($values['command'])
+    {
+        case 'UPDATE':
+            updateOpertaion($values);
+        case 'SELECT':
+            selectOperation($values);                              
+        break;
+    }
+}
+
+/*
+   Do an operation on the database
+*/
+
+function databaseOperation($values, $user_type, $user_id) {
     
+    switch($user_type) {
+        case 'ADMIN':
+            adminCommandSwitch($values, $user_id);
+            break;
+        case 'COACH':
+            coachCommandSwitch($values, $user_id);
+            break;
+        case 'USER':
+            userCommandSwitch($values, $user_id);
+            break;
+    }
+    //closeDB();
+}
+
+
+if($_POST != NULL) {
+    //validate
+   
+    if(userValidation($_POST))
+    {
+       //echo "validation Complete, user_type is:$user_type, user_id is: $user_id\r\n";
+       databaseOperation($_POST, $user_type, $user_id);
+    }
+   
 } else {
     echo("you didn't post anything...\r\n\r\n");
 }

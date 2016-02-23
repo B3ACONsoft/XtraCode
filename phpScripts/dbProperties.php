@@ -5,6 +5,11 @@ define("DSN", "mysql:host=localhost;dbname=remoteData");
 define("USERNAME", "root");
 define("PASSWORD", "remember");
 
+define("VALIDATE_USER", "SELECT user_type 
+                         FROM users
+                         WHERE (user_id=:user_id)
+                                AND
+                               (password = :password)");
 
 define("GET_ALL_SPORTS", "SELECT * FROM sport");
 define("GET_ALL_LEAGUES", "SELECT * FROM league");

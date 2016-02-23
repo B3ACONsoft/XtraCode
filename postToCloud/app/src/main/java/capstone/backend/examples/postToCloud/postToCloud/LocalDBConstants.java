@@ -6,6 +6,7 @@ import android.provider.BaseColumns;
  * Created by AnalEmbargo on 2/21/2016.
  */
 public interface LocalDBConstants {
+
     public static final String DELIM = ",";
     public static final String TEXT_TYPE = "TEXT";
 
