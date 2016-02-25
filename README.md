@@ -1,2 +1,20 @@
 # XtraCode
-We put extraCode here, like code from tutorials etc. that we just want to play with.
+
+Here lies the beginnings of a syncing system.
+
+Structure is:
+    dummyDataDBscrips
+        -scripts to init the test DBs
+        
+    php
+        -scrips which detail the sync functions server-side
+        
+    postToCloud-Mod
+        -Android project which sends simple POST requests
+        
+    SyncTestProgram
+        -Java based test program for sync system
+        
+        
+        
+More will changing and expanding...
