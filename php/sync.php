@@ -1,7 +1,10 @@
 <?php
 error_reporting(E_ALL);
 /*
-    Entry point for sync operation server side	
+    Entry point for sync operation server side
+    
+    David Johnson
+        2/22/2015	
 */
 include 'dbConnection.php';
 
@@ -16,11 +19,11 @@ $user_type;
     Also we can make sure a valid user only gets data which
     is relevant to them.
     
+    This inits the global user_id and user_type variables.
+    
     returns 
-        0 if user didn't validate correctly
-        1 if user is an admin
-        2 if user is a coach
-        3 if user is player/parent/member whatever...
+        0 on fail
+        1 on success
 */
 function userValidation($values) {
         global $user_type;
@@ -44,9 +47,30 @@ function userValidation($values) {
         $user_id = $values['user_id'];
         return 1;
 }
+/*
+    HOT NOTE ON WHERE I'M GOING WITH THESE USER SWITCHES.
+    
+    I'm making the assumption that for now
+    a user of any type is going be doing two basic operations.
+    They will be doing a "fetch all data operation" and 
+    they will be doing "targeted inserts and updates".
+    So it follows that each user will have a "fetch" command
+    that gets all data relevant for that user and they will have a 
+    "push" command with further options to update or insert data.
+    I know, I know, I'm stealing from Git >:).
+    
+    But a fetch on the app side
+    is just a select on this end.
+    Basically app side it is a fetch()
+    which is for loop with gets from the tables in a list.
+*/
 
+/*
+    Admin can do updates and inserts, in fact, because they are
+    admins they do pretty much anything for now. They are god.
+    Bow to them.
+*/
 function adminCommandSwitch($values, $user_id) {
-    //admin can do anthing...
     //echo "begin admin switch\r\n";
     switch($values['command'])
     {
@@ -64,6 +88,10 @@ function adminCommandSwitch($values, $user_id) {
     }
 }
 
+/*
+    Coaches can do updates and inserts, but they can only add players.
+    We still need to work out these permissions.
+*/
 function coachCommandSwitch($values, $user_id) {
     //coach can do anything for now too...
     switch($values['command'])
@@ -80,7 +108,10 @@ function coachCommandSwitch($values, $user_id) {
         break;
     }
 }
-
+/*
+    Users can only update their attendance record.
+    They can't insert or delete etc etc etc.
+*/
 function userCommandSwitch($valuse, $user_id) {
     //user can only update and select
     switch($values['command'])
