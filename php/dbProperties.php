@@ -92,6 +92,10 @@ define("GET_COACH_ATTENDANCE",
 define("GET_COACH_PLACES", 
        "NOTHING FOR NOW");
 
+//get all relevant events
+define("GET_COACH_EVENTS",
+       "NOTHING FOR NOW");
+       
 //add a player to a team                            //can a coach do this?
 define("ADD_PLAYER", 
        "NOTHING FOR NOW");
