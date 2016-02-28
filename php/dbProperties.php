@@ -1,5 +1,8 @@
 <?php
-
+/*
+    David Johnson
+        2/20/2016
+*/
 //connection params
 define("DSN", "mysql:host=localhost;dbname=remoteData");
 define("USERNAME", "root");
@@ -61,8 +64,8 @@ define("ADD_ENROLLMENT",
             
 define("ADD_PLACE", 
        "INSERT INTO place
-       (place_name, street_address, city, state, zip)
-       VALUES(:place_name, :street_address, :city, :state, :zip)");
+            (place_name, street_address, city, state, zip)
+            VALUES(:place_name, :street_address, :city, :state, :zip)");
 
 ////////////////////////////////////
 /*
@@ -72,27 +75,48 @@ define("ADD_PLACE",
 define("GET_COACH_SPORTS", "NOTHING FOR NOW");      //do we really need this for a coach?
 define("GET_COACH_LEAGUES", "NOTHING FOR NOW");     //de we really need this for a coach?
 
+//get all players that a given coach is responsible for
 define("GET_COACH_PLAYERS", 
         "SELECT * FROM player
             WHERE :coach_user_id = player.user_id");
-                 
-define("GET_COACH_ENROLLEMENT", "NOTHING FOR NOW");
-define("GET_COACH_ATTENDANCE", "NOTHING FOR NOW");
-define("GET_COACH_PLACES", "NOTHING FOR NOW");
 
-define("ADD_PLAYER", "NOTHING FOR NOW");
+//get all enrollment data that concerns a given coach                 
+define("GET_COACH_ENROLLEMENT",
+       "NOTHING FOR NOW");
 
-define("UPDATE_EVENT", "NOTHING FOR NOW");
+//get attendance data that a concerns a given coach
+define("GET_COACH_ATTENDANCE", 
+       "NOTHING FOR NOW");
+
+//get all places that concern a given coach
+define("GET_COACH_PLACES", 
+       "NOTHING FOR NOW");
+
+//add a player to a team                            //can a coach do this?
+define("ADD_PLAYER", 
+       "NOTHING FOR NOW");
+
+//change properties for a given event               //can a coach do this?
+define("UPDATE_EVENT", 
+       "NOTHING FOR NOW");
 
 //////////////////////////////////
 /*
     USER PRIVLEDGE QUERIES
 */
 /////////////////////////////////
-
+//get the leagues a player is in
 define("GET_PLAYER_LEAGUES", "NOTHING FOR NOW");
+
+//get the enrollment information for a user
+//so all players associated with a user right?
 define("GET_PLAYER_ENROLLMENT", "NOTHING FOR NOW");
+
+//get attendance records relevant to a user
 define("GET_PLAYER_ATTENDANCE", "NOTHING FOR NOW");
+
+//get places relevant to a user
 define("GET_PLAYER_PLACES", "NOTHING FOR NOW");
 
-define("GET_PLAYER_UPDATE_ATTENDANCE", "NOTHING FOR NOW");
+//update an attendance record, ie "coming" or "not coming"
+define("UPDATE_PLAYER_ATTENDANCE", "NOTHING FOR NOW");
