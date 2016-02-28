@@ -122,5 +122,8 @@ define("GET_PLAYER_ATTENDANCE", "NOTHING FOR NOW");
 //get places relevant to a user
 define("GET_PLAYER_PLACES", "NOTHING FOR NOW");
 
+//events relevant to a user
+define("GET_PLAYER_EVENTS", "NOTHING FOR NOW");
+
 //update an attendance record, ie "coming" or "not coming"
 define("UPDATE_PLAYER_ATTENDANCE", "NOTHING FOR NOW");
