@@ -2,7 +2,6 @@
 
 Here lies the beginnings of a syncing system.
 
-Structure is:
     dummyDataDBscrips
         -scripts to init the test DBs
         
