@@ -62,12 +62,12 @@ function insertUserBinding($query, $values) {
     
     Does nothing if table is not in switch.
 */
-function insertOperation($table, $values) {
+function insertOperation($values) {
     global $db;
     $query = null;
     
     if($db != null) {
-            switch($table) {
+            switch($values['table_name']) {
             case 'SPORTS':
                 $query = $db->prepare(ADD_SPORT);
                 break;
@@ -76,7 +76,7 @@ function insertOperation($table, $values) {
                 break;
             case 'USERS':
                 $query = $db->prepare(ADD_USER);
-                insertUserBinding($query, $values);
+                //insertUserBinding($query, $values);
                 break;
             case 'TEAM':
                 $query = $db->prepare(ADD_TEAM);

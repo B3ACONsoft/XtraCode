@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/B3ACONsoft/commons-net-3.4/commons-net-3.4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

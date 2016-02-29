@@ -4,7 +4,7 @@
         2/20/2016
 */
 //connection params
-define("DSN", "mysql:host=localhost;dbname=remoteData");
+define("DSN", "mysql:host=localhost;dbname=timeStampedDataAllStrings");
 define("USERNAME", "root");
 define("PASSWORD", "remember");
 
