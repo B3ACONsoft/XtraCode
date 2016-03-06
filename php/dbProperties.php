@@ -77,8 +77,11 @@ define("GET_COACH_LEAGUES", "NOTHING FOR NOW");     //de we really need this for
 
 //get all players that a given coach is responsible for
 define("GET_COACH_PLAYERS", 
-        "SELECT * FROM player
-            WHERE :coach_user_id = player.user_id");
+        "SELECT p.user_id, p.player_id, p.fname, p.lname FROM team t, player p, users u, enrollment e
+            WHERE t.team_id = :team_id 
+			AND t.user_id = :coach_user_id
+			AND t.team_id = e.team_id
+			AND e.user_id = p.user_id);
 
 //get all enrollment data that concerns a given coach                 
 define("GET_COACH_ENROLLEMENT",
