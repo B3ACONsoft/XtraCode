@@ -31,7 +31,7 @@ function getTimeStamp() {
             $timevalue = fread($fp, 49);
             fclose($fp); 
         } else {
-            echo $err.="    ".=$errstr.="\r\n";
+            //echo $err.="    ".=$errstr.="\r\n";
         }
     }
 }
