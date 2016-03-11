@@ -18,7 +18,8 @@ public class RemoteConnection {
     /*
      * from here:
      * 	http://stackoverflow.com/questions/17998869/netbeans-how-to-debug-a-post-request-php
-     * 
+     *  https://www.devside.net/wamp-server/configure-netbeans-8-with-xdebug-connection-on-wamp
+     *  
      * We append xdebug information in this function so that the localhost/<pagename>
      * knows to connect to our netbeans instance.
      * NOTE:

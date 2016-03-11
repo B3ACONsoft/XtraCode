@@ -12,7 +12,7 @@ public class AdminRemoteOperations extends RemoteOperations {
 		try
 		{
 			command.put("sport_name", sportName);
-			command.put("last_edited", getCurrentTimestamp());
+			
 			doOperation();
 		} catch(Exception e) {
 			return e.getMessage();
@@ -37,7 +37,7 @@ public class AdminRemoteOperations extends RemoteOperations {
 			command.put("max_age", max_age);
 			command.put("start_date", start_date);
 			command.put("end_date", end_date);
-			command.put("last_edited", getCurrentTimestamp());
+			
 			doOperation();
 		} catch(Exception e) {
 			return e.getMessage();
@@ -63,7 +63,7 @@ public class AdminRemoteOperations extends RemoteOperations {
 			command.put("email", user_type);
 			command.put("user_type", password);
 			command.put("password", email);
-			command.put("last_edited", getCurrentTimestamp());
+			
 			doOperation();
 		} catch(Exception e) {
 			return e.getMessage();
@@ -81,7 +81,7 @@ public class AdminRemoteOperations extends RemoteOperations {
 			command.put("league_id", league_id);
 			command.put("team_name", team_name);
 			command.put("user_id", user_id);
-			command.put("last_edited", getCurrentTimestamp());
+			
 			doOperation();
 		} catch(Exception e) {
 			return e.getMessage();
@@ -105,7 +105,7 @@ public class AdminRemoteOperations extends RemoteOperations {
 			command.put("league_id", "league_id");
 			command.put("enrollment_date", "enrollment_date");
 			command.put("fee", "fee");
-			command.put("last_edited", getCurrentTimestamp());
+			
 			doOperation();
 		} catch(Exception e) {
 			return e.getMessage();
@@ -126,7 +126,7 @@ public class AdminRemoteOperations extends RemoteOperations {
 			command.put("city", "city");
 			command.put("state", "state");
 			command.put("zip", "zip");
-			command.put("last_edited", getCurrentTimestamp());
+			
 			doOperation();
 		} catch(Exception e) {
 			return e.getMessage();
@@ -148,7 +148,7 @@ public class AdminRemoteOperations extends RemoteOperations {
 			command.put("place_id", "place_id");
 			command.put("home_team_id", "home_team");
 			command.put("away_team_id", "away_team");
-			command.put("last_edited", getCurrentTimestamp());
+			
 			doOperation();
 		} catch(Exception e) {
 			return e.getMessage();
