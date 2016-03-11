@@ -10,6 +10,8 @@ Here lies the beginnings of a syncing system.
                     Packages
                         RandomNameGenerator/
                             -public library to generate random names
+                            @author Kohsuke Kawaguchi
+                            https://github.com/kohsuke/wordnet-random-name
                          SYSCOServerAccess/
                             -methods which allow post requests to the sever
                         TestRoutines/
