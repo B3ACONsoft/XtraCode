@@ -9,10 +9,22 @@ import java.util.HashMap;
 
 public class RemoteConnection {
 	
-	private final String SERVER_URL = "http://localhost/sync.php";			//my test db
+	//private final String SERVER_URL = "http://localhost/sync.php";			//my test db
+	private final String SERVER_URL = "http://localhost/SYCOsync/sync.php";			//my test db
+	//private final String SERVER_URL = "http://localhost/stuffPlace.php";		//we are using
 	private HttpURLConnection conn;             //http connection
     private URL url;   
     
+    /*
+     * from here:
+     * 	http://stackoverflow.com/questions/17998869/netbeans-how-to-debug-a-post-request-php
+     * 
+     * We append xdebug information in this function so that the localhost/<pagename>
+     * knows to connect to our netbeans instance.
+     * NOTE:
+     * 	THIS WILL NOT WORK REMOTELY, MUST BE LOCAL HOST
+     * 			as far as i can tell...
+     */
     private String parsePostParams(HashMap<String, String> paramsMap) throws Exception
     {
         StringBuilder paramsBuilder = new StringBuilder();
@@ -25,10 +37,18 @@ public class RemoteConnection {
                         URLEncoder.encode(paramsMap.get(key), "UTF-8"));            //we must use this encoding
                                                                                     //on the value only
                 paramsBuilder.append("&");
+                
             } catch (UnsupportedEncodingException e)
             {
                 throw new Exception("param Parsing error: " + e.getMessage());
             }
+        }
+        //append the xdebug information
+        //remove before production
+        if(paramsBuilder.toString().endsWith("&")) {
+        	paramsBuilder.append("XDEBUG_SESSION_START=netbeans-xdebug");
+        } else {
+        	paramsBuilder.append("&XDEBUG_SESSION_START=netbeans-xdebug");
         }
         return paramsBuilder.toString();
     }

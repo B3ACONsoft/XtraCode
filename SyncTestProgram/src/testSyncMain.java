@@ -109,9 +109,9 @@ public class testSyncMain {
 	}
 	
 	public static void main(String[] args) {
-		//testUserValidation();
+		testUserValidation();
 		//testAdminGetAllData();
-		testAdminCreateUsers(3, 4, 6);
+		//testAdminCreateUsers(3, 4, 6);
 	}
 
 }

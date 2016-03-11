@@ -4,7 +4,7 @@
         2/20/2016
 */
 //connection params
-define("DSN", "mysql:host=localhost;dbname=timeStampedDataAllStrings");
+define("DSN", "mysql:host=localhost;dbname=remoteData");
 define("USERNAME", "root");
 define("PASSWORD", "remember");
 
@@ -81,11 +81,11 @@ define("GET_COACH_PLAYERS",
             WHERE t.team_id = :team_id 
 			AND t.user_id = :coach_user_id
 			AND t.team_id = e.team_id
-			AND e.user_id = p.user_id);
+			AND e.user_id = p.user_id)");
 
 //get all enrollment data that concerns a given coach                 
 define("GET_COACH_ENROLLEMENT",
-       "NOTHING FOR NOW");
+        "NOTHING FOR NOW");
 
 //get attendance data that a concerns a given coach
 define("GET_COACH_ATTENDANCE", 
