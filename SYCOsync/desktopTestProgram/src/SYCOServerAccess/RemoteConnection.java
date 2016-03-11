@@ -8,7 +8,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 
-import SYCOServerAccess.DebugFLAGS.SERVER_DEBUG_FLAGS;
+import Debugging.DebugFLAGS;
+
 
 public final class RemoteConnection {
 	

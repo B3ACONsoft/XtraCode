@@ -26,7 +26,7 @@ function doInsert($query) {
         try {
             
             if($query->execute()) {
-                echo 'SUCCESS!!!\nInserted Values:\n'.$params['id'].', '.$params['firstname'].', '.$params['lastname'].', '.$params['phone'].', '.$params['email'].'\r\n\r\n'; 
+                //echo 'SUCCESS!!!\nInserted Values:\n'.$params['id'].', '.$params['firstname'].', '.$params['lastname'].', '.$params['phone'].', '.$params['email'].'\r\n\r\n'; 
             } else {
                 echo "\nPDOStatement::errorInfo():\n";
                 $arr = $query->errorInfo();
@@ -44,13 +44,14 @@ function doInsert($query) {
 /*
     binds params for the ADD_USER query
 */
-function insertUserBinding($query, $values) {
-    $query->bindParam(':fname', $params['fname']);
-    $query->bindParam(':lname', $params['lname']);
-    $query->bindParam(':phone', $params['emergency']);
-    $query->bindParam(':email', $params['email']);
-    $query->bindParam(':user_type', $params['user_type']);
-    $query->bindParam(':password', $params['password']);
+function insertUserBinding(&$query, $values) {
+    $query->bindParam(':fname', $values['fname']);
+    $query->bindParam(':lname', $values['lname']);
+    $query->bindParam(':phone', $values['phone']);
+    $query->bindParam(':emergency', $values['emergency']);
+    $query->bindParam(':email', $values['email']);
+    $query->bindParam(':user_type', $values['user_type']);
+    $query->bindParam(':password', $values['password']);
 }
 
 
@@ -76,7 +77,7 @@ function insertOperation($values) {
                 break;
             case 'USERS':
                 $query = $db->prepare(ADD_USER);
-                //insertUserBinding($query, $values);
+                insertUserBinding($query, $values);
                 break;
             case 'TEAM':
                 $query = $db->prepare(ADD_TEAM);

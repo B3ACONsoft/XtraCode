@@ -62,11 +62,11 @@ public class AdminRemoteOperations extends RemoteOperations {
 			command.put("lname", lname);
 			command.put("phone", phone);
 			command.put("emergency", emergency);
-			command.put("email", user_type);
-			command.put("user_type", password);
-			command.put("password", email);
+			command.put("email", email);
+			command.put("user_type", user_type);
+			command.put("password", password);
 			
-			doOperation();
+			result = doOperation();
 		} catch(Exception e) {
 			return e.getMessage();
 		}

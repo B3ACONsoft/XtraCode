@@ -1,11 +1,12 @@
 package TestRoutines;
+import Debugging.DebugFLAGS;
 import SYCOServerAccess.AdminRemoteOperations;
 import SYCOServerAccess.RemoteConnection;
 
 public class AdminTests {
 	
-	public PuppyStuffer randGen = new PuppyStuffer();
-	public AdminRemoteOperations adminRemoteOperations = new AdminRemoteOperations();
+	public static PuppyStuffer randGen = new PuppyStuffer();
+	public static AdminRemoteOperations adminRemoteOperations = new AdminRemoteOperations();
 	
 	/*
 	 * Sends the following commands to the server
@@ -19,7 +20,7 @@ public class AdminTests {
 	 * 
 	 * Should print a JSON formated string for each command to the console
 	 */
-	public void testAdminGetAllData() {
+	public static void testAdminGetAllData() {
 		System.out.println(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllSports));
 		System.out.println(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllLeagues));
 		System.out.println(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllUsers));
@@ -29,7 +30,7 @@ public class AdminTests {
 		System.out.println(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllEvents));
 	}
 	
-	public void testAdminCreateUsers(int numAdmin, int numCoach, int numUser) {
+	public static void testAdminCreateUsers(int numAdmin, int numCoach, int numUser) {
 		
 		int i = 0;
 		int j = 0;
@@ -53,17 +54,19 @@ public class AdminTests {
 				email = lname + "@baconSoft.net";
 				user_type = "ADMIN";
 				password = "PASSWORD";
-				System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-25s\n", fname, lname, phone, emergency, user_type, email, password);
 				
-				 adminRemoteOperations.createUser(
-						fname,
-						lname,
-						phone,
-						emergency,
-						user_type,
-						email,
-						password);
-				
+				if(DebugFLAGS.LOCAL_DEBUG == DebugFLAGS.LOCAL_DEBUG_FLAGS.DEBUG_ON) {
+					System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-25s\n", fname, lname, phone, emergency, user_type, email, password);
+				} else {
+					adminRemoteOperations.createUser(
+							fname,
+							lname,
+							phone,
+							emergency,
+							user_type,
+							email,
+							password);
+				}
 			}
 			
 			for(;j < numCoach; j++) {
@@ -75,16 +78,19 @@ public class AdminTests {
 				email = lname + "@baconSoft.net";
 				user_type = "COACH";
 				password = "PASSWORD";
-				System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-25s\n", fname, lname, phone, emergency, user_type, email, password);
 				
-				 adminRemoteOperations.createUser(
-						fname,
-						lname,
-						phone,
-						emergency,
-						user_type,
-						email,
-						password);
+				if(DebugFLAGS.LOCAL_DEBUG == DebugFLAGS.LOCAL_DEBUG_FLAGS.DEBUG_ON) {
+					System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-25s\n", fname, lname, phone, emergency, user_type, email, password);
+				} else {
+					adminRemoteOperations.createUser(
+							fname,
+							lname,
+							phone,
+							emergency,
+							user_type,
+							email,
+							password);
+				}
 				 
 			}
 			
@@ -97,15 +103,19 @@ public class AdminTests {
 				email = lname + "@baconSoft.net";
 				user_type = "USER";
 				password = "PASSWORD";
-				System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-25s\n", fname, lname, phone, emergency, user_type, email, password);
-				adminRemoteOperations.createUser(
-						fname,
-						lname,
-						phone,
-						emergency,
-						user_type,
-						email,
-						password);
+				
+				if(DebugFLAGS.LOCAL_DEBUG == DebugFLAGS.LOCAL_DEBUG_FLAGS.DEBUG_ON) {
+					System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s %-25s\n", fname, lname, phone, emergency, user_type, email, password);
+				} else {
+					adminRemoteOperations.createUser(
+							fname,
+							lname,
+							phone,
+							emergency,
+							user_type,
+							email,
+							password);
+				}
 			}
 			
 	

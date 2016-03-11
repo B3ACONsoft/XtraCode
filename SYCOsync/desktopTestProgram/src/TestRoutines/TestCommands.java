@@ -149,7 +149,7 @@ public final class TestCommands {
 				adminCreateSport.put("command", "INSERT");
 				adminCreateSport.put("table_name", "SPORTS");
 				adminCreateSport.put("sport_name", "");
-				adminCreateSport.put("last_edited", "");
+				//adminCreateSport.put("last_edited", "");
 			}
 		};
 		
@@ -167,7 +167,7 @@ public final class TestCommands {
 				adminCreateLeague.put("max_age", "");
 				adminCreateLeague.put("start_date", "");
 				adminCreateLeague.put("end_date", "");
-				adminCreateLeague.put("last_edited", "");
+				//adminCreateLeague.put("last_edited", "");
 			}
 		};
 		
@@ -186,7 +186,7 @@ public final class TestCommands {
 				adminCreateUser.put("email", "");
 				adminCreateUser.put("user_type", "");
 				adminCreateUser.put("password", "");
-				adminCreateUser.put("last_edited", "");
+				//adminCreateUser.put("last_edited", "");
 			}
 		};
 		
@@ -201,7 +201,7 @@ public final class TestCommands {
 				adminCreateTeam.put("league_id", "");
 				adminCreateTeam.put("team_name", "");
 				adminCreateTeam.put("user_id", "");
-				adminCreateTeam.put("last_edited", "");
+				//adminCreateTeam.put("last_edited", "");
 			}
 		};
 		
@@ -219,7 +219,7 @@ public final class TestCommands {
 				adminCreateEnrollment.put("league_id", "");
 				adminCreateEnrollment.put("enrollment_date", "");
 				adminCreateEnrollment.put("fee", "");
-				adminCreateEnrollment.put("last_edited", "");
+				//adminCreateEnrollment.put("last_edited", "");
 			}
 		};
 		
@@ -236,7 +236,7 @@ public final class TestCommands {
 				adminCreatePlace.put("city", "");
 				adminCreatePlace.put("state", "");
 				adminCreatePlace.put("zip", "");
-				adminCreatePlace.put("last_edited", "");
+				//adminCreatePlace.put("last_edited", "");
 			}
 		};
 		
@@ -253,7 +253,7 @@ public final class TestCommands {
 				adminCreateEvent.put("place_id", "");
 				adminCreateEvent.put("home_team_id", "");
 				adminCreateEvent.put("away_team_id", "");
-				adminCreateEvent.put("last_edited", "");
+				//adminCreateEvent.put("last_edited", "");
 			}
 		};
 	}

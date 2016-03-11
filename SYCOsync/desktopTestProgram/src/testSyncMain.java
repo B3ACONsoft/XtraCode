@@ -1,4 +1,4 @@
-import SYCOServerAccess.DebugFLAGS;
+import Debugging.DebugFLAGS;
 import TestRoutines.AdminTests;
 import TestRoutines.CoachTests;
 import TestRoutines.UserTests;
@@ -22,21 +22,32 @@ public class testSyncMain {
 	 * Right now switchws for debug are in
 	 * 		RemoteConnection.parsePostParams()
 	 */
-	public static void debug_ON() {
+	public static void debugPHP_ON() {
 		DebugFLAGS.PHP_DEBUG = DebugFLAGS.SERVER_DEBUG_FLAGS.DEBUG_ON;
 	}
 	
-	public static void debug_OFF() {
+	public static void debugPHP_OFF() {
 		DebugFLAGS.PHP_DEBUG = DebugFLAGS.SERVER_DEBUG_FLAGS.DEBUG_OFF;
 	}
-		
+	
+	public static void debugLocal_ON() {
+		DebugFLAGS.LOCAL_DEBUG = DebugFLAGS.LOCAL_DEBUG_FLAGS.DEBUG_ON;
+	}
+	
+	public static void debugLocal_OFF() {
+		DebugFLAGS.LOCAL_DEBUG = DebugFLAGS.LOCAL_DEBUG_FLAGS.DEBUG_OFF;
+	}
+	
 	public static void main(String[] args) {
-		debug_ON();				
-		//debug_OFF();
+		//debugPHP_ON();				
+		debugPHP_OFF();
+		//debugLocal_ON();
+		debugLocal_OFF();
 		
-		userValidationTests.testUserValidation();
+		//userValidationTests.testUserValidation();
 		//AdminTests.testAdminGetAllData();
 		//AdminTests.testAdminCreateUsers(3, 4, 6);
+		AdminTests.testAdminCreateUsers(3, 4, 6);
 	}
 
 }
