@@ -1,4 +1,4 @@
-package SYCOserver;
+package SYCOServerAccess;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,7 +8,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 
-import SYCOserver.DebugFLAGS.SERVER_DEBUG_FLAGS;
+import SYCOServerAccess.DebugFLAGS.SERVER_DEBUG_FLAGS;
 
 public final class RemoteConnection {
 	

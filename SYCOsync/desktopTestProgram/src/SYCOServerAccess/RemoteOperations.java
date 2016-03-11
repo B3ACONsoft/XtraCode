@@ -1,4 +1,4 @@
-package SYCOserver;
+package SYCOServerAccess;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;

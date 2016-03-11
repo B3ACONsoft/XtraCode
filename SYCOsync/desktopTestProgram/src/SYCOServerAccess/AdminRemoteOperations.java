@@ -1,4 +1,4 @@
-package SYCOserver;
+package SYCOServerAccess;
 
 import TestRoutines.TestCommands;
 

@@ -2,18 +2,19 @@
 
 Here lies the beginnings of a syncing system.
 
-    dummyDataDBscrips
-        -scripts to init the test DBs
-        
-    php
-        -scrips which detail the sync functions server-side
-        
-    postToCloud-Mod
-        -Android project which sends simple POST requests
-        
-    SyncTestProgram
-        -Java based test program for sync system
-        
-        
-        
-More will changing and expanding...
+    Structure Change!!!
+        SYCOsync/
+            desktopTestProgram/
+                src/
+                    -Contains java source which makes up the testProgram
+                    Packages
+                        RandomNameGenerator/
+                            -public library to generate random names
+                         SYSCOServerAccess/
+                            -methods which allow post requests to the sever
+                        TestRoutines/
+                            -methods which test specific funtions for admins,
+                            users, coaches, userValidation
+                
+        dummyDataDBScripts/
+            -Contains scripts which populate the test databases that we are using.

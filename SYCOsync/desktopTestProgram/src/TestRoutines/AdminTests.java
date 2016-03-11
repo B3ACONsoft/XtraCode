@@ -1,6 +1,6 @@
 package TestRoutines;
-import SYCOserver.AdminRemoteOperations;
-import SYCOserver.RemoteConnection;
+import SYCOServerAccess.AdminRemoteOperations;
+import SYCOServerAccess.RemoteConnection;
 
 public class AdminTests {
 	

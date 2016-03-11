@@ -1,4 +1,4 @@
-import SYCOserver.DebugFLAGS;
+import SYCOServerAccess.DebugFLAGS;
 import TestRoutines.AdminTests;
 import TestRoutines.CoachTests;
 import TestRoutines.UserTests;

@@ -1,4 +1,4 @@
-package SYCOserver;
+package SYCOServerAccess;
 
 public final class DebugFLAGS {
 	public enum SERVER_DEBUG_FLAGS {
