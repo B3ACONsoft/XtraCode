@@ -150,7 +150,7 @@ if($_POST != NULL) {
    
     if(userValidation($_POST))
     {
-       //echo "validation Complete, user_type is:$user_type, user_id is: $user_id\r\n";
+       echo "validation Complete, user_type is:$user_type, user_id is: $user_id\r\n";
        databaseOperation($_POST, $user_type, $user_id);
     }
    

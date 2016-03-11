@@ -7,13 +7,11 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 
-public class RemoteConnection {
+public final class RemoteConnection {
 	
-	//private final String SERVER_URL = "http://localhost/sync.php";			//my test db
-	private final String SERVER_URL = "http://localhost/SYCOsync/sync.php";			//my test db
-	//private final String SERVER_URL = "http://localhost/stuffPlace.php";		//we are using
-	private HttpURLConnection conn;             //http connection
-    private URL url;   
+	private final static String 		SERVER_URL = "http://localhost/SYCOsync/sync.php";			
+	private static HttpURLConnection 	conn;             //http connection
+    private static URL 					url;   
     
     /*
      * from here:
@@ -26,7 +24,7 @@ public class RemoteConnection {
      * 	THIS WILL NOT WORK REMOTELY, MUST BE LOCAL HOST
      * 			as far as i can tell...
      */
-    private String parsePostParams(HashMap<String, String> paramsMap) throws Exception
+    private static String parsePostParams(HashMap<String, String> paramsMap) throws Exception
     {
         StringBuilder paramsBuilder = new StringBuilder();
         for(String key: paramsMap.keySet()) {
@@ -44,26 +42,31 @@ public class RemoteConnection {
                 throw new Exception("param Parsing error: " + e.getMessage());
             }
         }
-        //append the xdebug information
-        //remove before production
-        if(paramsBuilder.toString().endsWith("&")) {
-        	paramsBuilder.append("XDEBUG_SESSION_START=netbeans-xdebug");
-        } else {
-        	paramsBuilder.append("&XDEBUG_SESSION_START=netbeans-xdebug");
+        
+        //php debugging settings
+        if(DebugFLAGS.PHP_DEBUG == DebugFLAGS.SERVER_DEBUG_FLAGS.DEBUG_ON) {
+        	//append the xdebug information
+            //remove before production
+            if(paramsBuilder.toString().endsWith("&")) {
+            	paramsBuilder.append("XDEBUG_SESSION_START=netbeans-xdebug");
+            } else {
+            	paramsBuilder.append("&XDEBUG_SESSION_START=netbeans-xdebug");
+            }
         }
+        
         return paramsBuilder.toString();
     }
     
 	//make a post request to the url with the given parameters
     //return the response in string form
-    private String postRequest(String params) throws Exception {
+    private static String postRequest(String params) throws Exception {
         StringBuilder responseBuffer = new StringBuilder();
         try
         {
             byte[] bytes = params.getBytes();   //convert the data to bytes
 
-            this.url = new URL(SERVER_URL);                                                      //
-            conn = (HttpURLConnection) this.url.openConnection();                               //init the connection objects
+            url = new URL(SERVER_URL);                                                      //
+            conn = (HttpURLConnection) url.openConnection();                               //init the connection objects
             conn.setDoInput(true);
             conn.setDoOutput(true);
             conn.setInstanceFollowRedirects(false);
@@ -95,7 +98,7 @@ public class RemoteConnection {
         return responseBuffer.toString();                                                       //pass the response to onPostExecute()
     }
     
-    public String doPostRequest(HashMap<String, String> paramsMap) {
+    public static String doPostRequest(HashMap<String, String> paramsMap) {
     	try {
 			return postRequest(parsePostParams(paramsMap));
 		} catch (Exception e) {
