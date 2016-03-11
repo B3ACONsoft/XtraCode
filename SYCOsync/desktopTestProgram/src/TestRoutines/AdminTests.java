@@ -3,12 +3,27 @@ import Debugging.DebugFLAGS;
 import SYCOServerAccess.AdminRemoteOperations;
 import SYCOServerAccess.RemoteConnection;
 
+/**
+ * This class holds methods which run tests on particular Admin
+ * capabilities.
+ * 
+ * @author David Johnson
+ *
+ */
 public class AdminTests {
 	
+	/**
+	 * Random value generator
+	 */
 	public static PuppyStuffer randGen = new PuppyStuffer();
+	
+	/**
+	 * Allows connection to a remote location.
+	 */
 	public static AdminRemoteOperations adminRemoteOperations = new AdminRemoteOperations();
 	
-	/*
+	
+	/**
 	 * Sends the following commands to the server
 	 * 	adminGetsAllSports
 	 * 	adminGetsAllLeagues
@@ -30,6 +45,14 @@ public class AdminTests {
 		System.out.println(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllEvents));
 	}
 	
+	/**
+	 * This Method creates random admins, coaches, and users of
+	 * given amount and then inserts them into the remote database.
+	 * <br>
+	 * @param numAdmin Number of admins you want to create.
+	 * @param numCoach Number of coaches you want to create.
+	 * @param numUser Number of users you want to create.
+	 */
 	public static void testAdminCreateUsers(int numAdmin, int numCoach, int numUser) {
 		
 		int i = 0;

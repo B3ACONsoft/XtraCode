@@ -2,6 +2,16 @@ package TestRoutines;
 
 import java.util.HashMap;
 
+/**
+ * This final class contains final classes which contain HashMaps
+ * which define the contract that various commands must abide by.
+ * <br>
+ * The ordering is:
+ * 		TestCommands.<CommandCategory>.<CommandName>
+ * 
+ * @author David Johnson
+ *
+ */
 public final class TestCommands {
 	public static final class CheckUserValidation {
 		public static final HashMap<String, String> validCredentials;

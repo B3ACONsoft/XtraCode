@@ -11,6 +11,14 @@ import java.util.HashMap;
 import Debugging.DebugFLAGS;
 
 
+/**This class allows connection to a remove location via
+ * a POST request.
+ * <br>
+ * SERVER_URL specifies the location to which one posts.
+ * 
+ * @author David Johnson
+ *
+ */
 public final class RemoteConnection {
 	
 	private final static String 		SERVER_URL = "http://localhost/SYCOsync/sync.php";			
@@ -18,7 +26,13 @@ public final class RemoteConnection {
     private static URL 					url;   
     
     /*
-     * from here:
+     * 
+     */
+    
+    /**
+     * Converts a hash map into a post body.
+     * <br>
+     * NOTE ON DEBUG SETTINGS:
      * 	http://stackoverflow.com/questions/17998869/netbeans-how-to-debug-a-post-request-php
      *  https://www.devside.net/wamp-server/configure-netbeans-8-with-xdebug-connection-on-wamp
      *  
@@ -27,6 +41,9 @@ public final class RemoteConnection {
      * NOTE:
      * 	THIS WILL NOT WORK REMOTELY, MUST BE LOCAL HOST
      * 			as far as i can tell...
+     * @param paramsMap Key value pairs which are the params of the post request.
+     * @return
+     * @throws Exception
      */
     private static String parsePostParams(HashMap<String, String> paramsMap) throws Exception
     {
@@ -61,8 +78,14 @@ public final class RemoteConnection {
         return paramsBuilder.toString();
     }
     
-	//make a post request to the url with the given parameters
-    //return the response in string form
+	
+    /**
+     * Make a post request to the SERVER_URL with the given parameters.
+     * 
+     * @param params The post parameters in string form.
+     * @return The server response in string form.
+     * @throws Exception
+     */
     private static String postRequest(String params) throws Exception {
         StringBuilder responseBuffer = new StringBuilder();
         try

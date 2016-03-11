@@ -4,36 +4,45 @@ import TestRoutines.CoachTests;
 import TestRoutines.UserTests;
 import TestRoutines.UserValidationTests;
 
+/**
+ * @author David Johnson
+ *	This is the entry point of the testProgram.
+ *	Test routines are staged in main.
+ *	<br>
+ *	Use debug toggle routines int main to set debugging options.
+ */
 public class testSyncMain {
 	
-	/*
-	 * Classes containing test Commands
-	 */
+	
 	public static UserValidationTests 	userValidationTests = new UserValidationTests();
 	public static AdminTests 			adminTests			= new AdminTests();
 	public static CoachTests			coachTests			= new CoachTests();
 	public static UserTests				userTests			= new UserTests();
 	
-	/*
-	 * Set debug flags.
-	 * If debug flags are one, the application will send messages with allow
-	 * Xdbug to work for the php side of things.
-	 * 
-	 * Right now switchws for debug are in
-	 * 		RemoteConnection.parsePostParams()
+	/**
+	 * Set PHP debugging ON
 	 */
 	public static void debugPHP_ON() {
 		DebugFLAGS.PHP_DEBUG = DebugFLAGS.SERVER_DEBUG_FLAGS.DEBUG_ON;
 	}
 	
+	/**
+	 * Set PHP debugging OFF
+	 */
 	public static void debugPHP_OFF() {
 		DebugFLAGS.PHP_DEBUG = DebugFLAGS.SERVER_DEBUG_FLAGS.DEBUG_OFF;
 	}
 	
+	/**
+	 * Set Local Debugging ON
+	 */
 	public static void debugLocal_ON() {
 		DebugFLAGS.LOCAL_DEBUG = DebugFLAGS.LOCAL_DEBUG_FLAGS.DEBUG_ON;
 	}
 	
+	/**
+	 * Set Local debugging OFF
+	 */
 	public static void debugLocal_OFF() {
 		DebugFLAGS.LOCAL_DEBUG = DebugFLAGS.LOCAL_DEBUG_FLAGS.DEBUG_OFF;
 	}

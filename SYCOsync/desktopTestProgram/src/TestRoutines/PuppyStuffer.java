@@ -1,30 +1,46 @@
 package TestRoutines;
 import RandomNameGenerator.RandomNameGenerator;
 
-/*
- * The puppy stuffer is mean to get random values to populate the test database
+/**
+ * The puppyStuffer is a means to populate the test datbase with semi-random values.
  * 
  * @author David Johnson
- * 
+ *
  */
 public class PuppyStuffer {
-	//a borrowed library off git hub
+	/**
+	 * The random value generator.
+	 * This is NOT ours.
+	 * See https://github.com/kohsuke/wordnet-random-name
+	 */
 	RandomNameGenerator rand = new RandomNameGenerator();
 	
+	/**
+	 * @return Returns a random name.
+	 */
 	public String getRandomName() {
 		return rand.next();
 	}
 	
+	/**
+	 * @return Returns a random team name.
+	 */
 	public String getRandomTeamName() {
 		String name = getRandomName();
 		return "The_" + name + "s";
 	}
 	
+	/**
+	 * @return Returns a random league name.
+	 */
 	public String getRandomLeagueName() {
 		String name = getRandomName();
 		return "League_of_" + name + "s";
 	}
 	
+	/**
+	 * @return Returns a random phone number in (xxx) xxx-xxx format.
+	 */
 	public String getRandomPhoneNumber() {
 		int minimum = 0;
 		int maximum= 9;

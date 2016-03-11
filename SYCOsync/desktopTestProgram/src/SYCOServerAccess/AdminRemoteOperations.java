@@ -2,12 +2,32 @@ package SYCOServerAccess;
 
 import TestRoutines.TestCommands;
 
+/**
+ * This class contains methods which send particular post requests to the 
+ * server.
+ * <br>
+ * Inherits from RemoteOperations.
+ * 
+ * @author David Johnson
+ *
+ */
 public class AdminRemoteOperations extends RemoteOperations {
 	
+	/**
+	 * Constructor.
+	 * Calls superclass constructor.
+	 */
 	public AdminRemoteOperations() {
 		super();
 	}
 	
+	
+	/**
+	 * Create a sport.
+	 * <br>
+	 * @param sportName 
+	 * @return The result of the operation.
+	 */
 	public String createSport(String sportName) {
 		command = TestCommands.TestAdminSync.adminCreateSport;
 		String result = "";
@@ -15,13 +35,24 @@ public class AdminRemoteOperations extends RemoteOperations {
 		{
 			command.put("sport_name", sportName);
 			
-			doOperation();
+			result = doOperation();
 		} catch(Exception e) {
 			return e.getMessage();
 		}
 		return result;
 	}
 	
+	/**
+	 * Create a League.
+	 * <br>
+	 * @param league_name
+	 * @param sport_id
+	 * @param min_age
+	 * @param max_age
+	 * @param start_date
+	 * @param end_date
+	 * @return The result of the operation.
+	 */
 	public String createLeague(String league_name,
 							   String sport_id,
 							   String min_age,
@@ -40,13 +71,25 @@ public class AdminRemoteOperations extends RemoteOperations {
 			command.put("start_date", start_date);
 			command.put("end_date", end_date);
 			
-			doOperation();
+			result = doOperation();
 		} catch(Exception e) {
 			return e.getMessage();
 		}
 		return result;
 	}
 	
+	/**
+	 * Create a user.
+	 * <br>
+	 * @param fname
+	 * @param lname
+	 * @param phone
+	 * @param emergency
+	 * @param user_type
+	 * @param email
+	 * @param password
+	 * @return The result of the operation.
+	 */
 	public String createUser(String fname,
 							 String lname,
 							 String phone,
@@ -73,6 +116,14 @@ public class AdminRemoteOperations extends RemoteOperations {
 		return result;
 	}
 	
+	/**
+	 * Create a team.
+	 * 
+	 * @param league_id
+	 * @param team_name
+	 * @param user_id
+	 * @return The result of the operation.
+	 */
 	public String createTeam(String league_id,
 						    String team_name,
 						    String user_id) {
@@ -91,6 +142,17 @@ public class AdminRemoteOperations extends RemoteOperations {
 		return result;
 	}
 	
+	/**
+	 * Create an entry in the enrollment table.
+	 * 
+	 * @param user_id
+	 * @param player_id
+	 * @param team_id
+	 * @param league_id
+	 * @param enrollment_date
+	 * @param fee
+	 * @return The result of the operation.
+	 */
 	public String createEnrollment(String user_id,
 								   String player_id,
 								   String team_id,
@@ -115,6 +177,15 @@ public class AdminRemoteOperations extends RemoteOperations {
 		return result;
 	}
 	
+	/**
+	 * Create a place.
+	 * '
+	 * @param place_name
+	 * @param street_address
+	 * @param city
+	 * @param zip
+	 * @return The result of the operation.
+	 */
 	public String createPlace(String place_name,
 							  String street_address,
 							  String city,
@@ -129,13 +200,23 @@ public class AdminRemoteOperations extends RemoteOperations {
 			command.put("state", "state");
 			command.put("zip", "zip");
 			
-			doOperation();
+			result = doOperation();
 		} catch(Exception e) {
 			return e.getMessage();
 		}
 		return result;
 	}
 	
+	/**
+	 * Create an event.
+	 * 
+	 * @param event_type
+	 * @param start_date_time
+	 * @param place_id
+	 * @param home_team
+	 * @param away_team
+	 * @return The result of the operation.
+	 */
 	public String createEvent(String event_type,
 							  String start_date_time,
 							  String place_id,
@@ -151,7 +232,7 @@ public class AdminRemoteOperations extends RemoteOperations {
 			command.put("home_team_id", "home_team");
 			command.put("away_team_id", "away_team");
 			
-			doOperation();
+			result = doOperation();
 		} catch(Exception e) {
 			return e.getMessage();
 		}
