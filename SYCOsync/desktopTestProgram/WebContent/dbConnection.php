@@ -1,9 +1,14 @@
 <?php
 include 'dbProperties.php';
 
+/**
+ * The gobal database connection object.
+ */
 $db;
 
-//scott's DB connection stuff
+/**
+ * Establish a connection to the global database connection object.
+ */
 function connectToDB() {
     //echo "connecting to DB\r\n\r\n";
     global $db;
@@ -19,9 +24,11 @@ function connectToDB() {
     
 }
 
-/*
-    perform an insert for the query
-*/
+/**
+ * Performs an insert operation on a given prepared statement.
+ * 
+ * @param unknown $query
+ */
 function doInsert($query) {
         try {
             
@@ -41,9 +48,12 @@ function doInsert($query) {
 }
 
 
-/*
-    binds params for the ADD_USER query
-*/
+/**
+ * Binds the given values to the given prepared statement query.
+ * 
+ * @param unknown $query
+ * @param unknown $values
+ */
 function insertUserBinding(&$query, $values) {
     $query->bindParam(':fname', $values['fname']);
     $query->bindParam(':lname', $values['lname']);
@@ -54,15 +64,16 @@ function insertUserBinding(&$query, $values) {
     $query->bindParam(':password', $values['password']);
 }
 
-
-/*
-    Insert operation.
-    Switch on table name.
-    Bind params based on table name.
-    execute insert statement.
-    
-    Does nothing if table is not in switch.
-*/
+/**
+ * Insert operation.
+ * Switch on table name.
+ * Bind params based on table name.
+ * execute insert statement.
+ * Does nothing if table is not in switch.
+ * Accesses the values to get the table name.
+ * <br>
+ * @param unknown $values
+ */
 function insertOperation($values) {
     global $db;
     $query = null;
@@ -98,9 +109,7 @@ function insertOperation($values) {
     } 
 }
 
-/*
-    perform an insert for the given query
-*/
+//FIXME: REMOVE AFTER TESTING...
 function doSelect($query) {
     //echo "in doSelect()\r\n";
     global $db;
@@ -109,6 +118,11 @@ function doSelect($query) {
     return $result;
 }
 
+/**
+ * Do a select operation on a given prepared statement.
+ * 
+ * @param unknown $query
+ */
 function doPrepSelect($query) {
     //echo "in prepSelect()";
     global $db;
