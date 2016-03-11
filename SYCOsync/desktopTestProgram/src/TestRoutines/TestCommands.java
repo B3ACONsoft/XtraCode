@@ -1,3 +1,5 @@
+package TestRoutines;
+
 import java.util.HashMap;
 
 public final class TestCommands {

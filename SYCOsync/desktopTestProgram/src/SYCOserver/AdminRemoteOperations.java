@@ -1,4 +1,6 @@
-import java.util.HashMap;
+package SYCOserver;
+
+import TestRoutines.TestCommands;
 
 public class AdminRemoteOperations extends RemoteOperations {
 	

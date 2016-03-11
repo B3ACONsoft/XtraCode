@@ -1,3 +1,4 @@
+package SYCOserver;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,13 +8,26 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 
-public class TestPosts {
+import SYCOserver.DebugFLAGS.SERVER_DEBUG_FLAGS;
+
+public final class RemoteConnection {
 	
-	private final String SERVER_URL = "http://localhost/sync.php";			//my test db
-	private HttpURLConnection conn;             //http connection
-    private URL url;   
+	private final static String 		SERVER_URL = "http://localhost/SYCOsync/sync.php";			
+	private static HttpURLConnection 	conn;             //http connection
+    private static URL 					url;   
     
-    private String parsePostParams(HashMap<String, String> paramsMap) throws Exception
+    /*
+     * from here:
+     * 	http://stackoverflow.com/questions/17998869/netbeans-how-to-debug-a-post-request-php
+     *  https://www.devside.net/wamp-server/configure-netbeans-8-with-xdebug-connection-on-wamp
+     *  
+     * We append xdebug information in this function so that the localhost/<pagename>
+     * knows to connect to our netbeans instance.
+     * NOTE:
+     * 	THIS WILL NOT WORK REMOTELY, MUST BE LOCAL HOST
+     * 			as far as i can tell...
+     */
+    private static String parsePostParams(HashMap<String, String> paramsMap) throws Exception
     {
         StringBuilder paramsBuilder = new StringBuilder();
         for(String key: paramsMap.keySet()) {
@@ -25,24 +39,37 @@ public class TestPosts {
                         URLEncoder.encode(paramsMap.get(key), "UTF-8"));            //we must use this encoding
                                                                                     //on the value only
                 paramsBuilder.append("&");
+                
             } catch (UnsupportedEncodingException e)
             {
                 throw new Exception("param Parsing error: " + e.getMessage());
             }
         }
+        
+        //php debugging settings
+        if(DebugFLAGS.PHP_DEBUG == DebugFLAGS.SERVER_DEBUG_FLAGS.DEBUG_ON) {
+        	//append the xdebug information
+            //remove before production
+            if(paramsBuilder.toString().endsWith("&")) {
+            	paramsBuilder.append("XDEBUG_SESSION_START=netbeans-xdebug");
+            } else {
+            	paramsBuilder.append("&XDEBUG_SESSION_START=netbeans-xdebug");
+            }
+        }
+        
         return paramsBuilder.toString();
     }
     
 	//make a post request to the url with the given parameters
     //return the response in string form
-    private String postRequest(String params) throws Exception {
+    private static String postRequest(String params) throws Exception {
         StringBuilder responseBuffer = new StringBuilder();
         try
         {
             byte[] bytes = params.getBytes();   //convert the data to bytes
 
-            this.url = new URL(SERVER_URL);                                                      //
-            conn = (HttpURLConnection) this.url.openConnection();                               //init the connection objects
+            url = new URL(SERVER_URL);                                                      //
+            conn = (HttpURLConnection) url.openConnection();                               //init the connection objects
             conn.setDoInput(true);
             conn.setDoOutput(true);
             conn.setInstanceFollowRedirects(false);
@@ -74,7 +101,7 @@ public class TestPosts {
         return responseBuffer.toString();                                                       //pass the response to onPostExecute()
     }
     
-    public String doPostRequest(HashMap<String, String> paramsMap) {
+    public static String doPostRequest(HashMap<String, String> paramsMap) {
     	try {
 			return postRequest(parsePostParams(paramsMap));
 		} catch (Exception e) {

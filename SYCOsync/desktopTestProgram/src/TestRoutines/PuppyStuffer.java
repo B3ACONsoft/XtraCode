@@ -1,3 +1,5 @@
+package TestRoutines;
+import RandomNameGenerator.RandomNameGenerator;
 
 public class PuppyStuffer {
 	//a borrowed library off git hub

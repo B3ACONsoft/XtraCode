@@ -1,3 +1,8 @@
+import SYCOserver.DebugFLAGS;
+import TestRoutines.AdminTests;
+import TestRoutines.CoachTests;
+import TestRoutines.UserTests;
+import TestRoutines.UserValidationTests;
 
 public class testSyncMain {
 	
@@ -26,7 +31,8 @@ public class testSyncMain {
 	}
 		
 	public static void main(String[] args) {
-		debug_ON();				//set php debugging
+		debug_ON();				
+		//debug_OFF();
 		
 		userValidationTests.testUserValidation();
 		//AdminTests.testAdminGetAllData();

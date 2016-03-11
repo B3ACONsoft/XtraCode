@@ -1,3 +1,5 @@
+package TestRoutines;
+import SYCOserver.RemoteConnection;
 
 public class UserValidationTests {
 	

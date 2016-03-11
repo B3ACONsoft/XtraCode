@@ -1,3 +1,4 @@
+package RandomNameGenerator;
 /*
 WordNet 3.0 license: (Download)
 
@@ -20,72 +21,30 @@ used in advertising or publicity pertaining to distribution of the software and/
 copyright in this software, database and any associated documentation shall at all times remain
 with Princeton University and LICENSEE agrees to preserve same.
 */
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Dictionary of adjectives and nouns.
+ * Generates pseudo random unique names that combines one adjective and one noun,
+ * like "friendly tiger" or "good apple".
+ *
+ * There's about 1.5 million unique combinations, and if you keep requesting a new word
+ * it will start to loop (but this code will generate all unique combinations before it starts
+ * to loop.)
  *
  * @author Kohsuke Kawaguchi
  */
-public class Dictionary {
-    private List<String> nouns = new ArrayList<String>();
-    private List<String> adjectives = new ArrayList<String>();
+public class RandomNameGenerator {
+    private int pos;
 
-    private final int prime;
-
-    public Dictionary() {
-        try {
-            load("a.txt", adjectives);
-            load("n.txt", nouns);
-        } catch (IOException e) {
-            throw new Error(e);
-        }
-
-        int combo = size();
-
-        int primeCombo = 2;
-        while (primeCombo<=combo) {
-            int nextPrime = primeCombo+1;
-            primeCombo *= nextPrime;
-        }
-        prime = primeCombo+1;
+    public RandomNameGenerator(int seed) {
+        this.pos = seed;
     }
 
-    /**
-     * Total size of the combined words.
-     */
-    public int size() {
-        return nouns.size()*adjectives.size();
+    public RandomNameGenerator() {
+        this((int) System.currentTimeMillis());
+    } 
+    public synchronized String next() {
+        Dictionary d = Dictionary.INSTANCE;
+        pos = Math.abs(pos+d.getPrime()) % d.size();
+        return d.word(pos);
     }
-
-    /**
-     * Sufficiently big prime that's bigger than {@link #size()}
-     */
-    public int getPrime() {
-        return prime;
-    }
-
-    public String word(int i) {
-        int a = i%adjectives.size();
-        int n = i/adjectives.size();
-
-        return adjectives.get(a)+"_"+nouns.get(n);
-    }
-
-    private void load(String name, List<String> col) throws IOException {
-        BufferedReader r = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(name),"US-ASCII"));
-        try {
-            String line;
-            while ((line=r.readLine())!=null)
-                col.add(line);
-        } finally {
-            r.close();
-        }
-    }
-
-    static final Dictionary INSTANCE = new Dictionary();
 }
