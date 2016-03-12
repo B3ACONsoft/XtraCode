@@ -56,7 +56,8 @@ public class testSyncMain {
 		//userValidationTests.testUserValidation();
 		//AdminTests.testAdminGetAllData();
 		//AdminTests.testAdminCreateUsers(3, 4, 6);
-		AdminTests.testAdminCreateUsers(3, 4, 6);
+		//AdminTests.testAdminCreateTeams(1, 15, 15);
+		AdminTests.testAdminCreateLeagues(10);
 	}
 
 }

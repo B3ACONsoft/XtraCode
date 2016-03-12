@@ -1,4 +1,5 @@
 package TestRoutines;
+
 import Debugging.DebugFLAGS;
 import SYCOServerAccess.AdminRemoteOperations;
 import SYCOServerAccess.RemoteConnection;
@@ -143,4 +144,55 @@ public class AdminTests {
 			
 	
 	}
+	
+	/**
+	 * This function creates a specified number of teams in
+	 * the given league and attached to the given coach
+	 * via their id.
+	 * <br>
+	 * @param league_id
+	 * @param coach_id
+	 * @param numberOfTeams
+	 */
+	public static void testAdminCreateTeams(int league_id, int coach_id, int numberOfTeams) {
+		int i = 0;
+		String team_name;
+		
+		for(;i < numberOfTeams; i++) {			
+			team_name = randGen.getRandomTeamName();
+			if(DebugFLAGS.LOCAL_DEBUG == DebugFLAGS.LOCAL_DEBUG_FLAGS.DEBUG_ON) {
+				System.out.printf("%-25s %-25s %-25s\n", league_id, team_name, coach_id);
+			} else {
+				adminRemoteOperations.createTeam(String.valueOf(league_id), team_name, String.valueOf(coach_id));
+			}
+		}
+	}
+	
+	/**
+	 * Create an insert a league with a random name.
+	 * @param leagueName
+	 */
+	public static void testAdminCreateLeagues(int numberOfLeagues) {
+		int i = 0;
+		String league_name;
+		
+		for(;i < numberOfLeagues; i++) {
+			league_name = randGen.getRandomLeagueName();
+			if(DebugFLAGS.LOCAL_DEBUG == DebugFLAGS.LOCAL_DEBUG_FLAGS.DEBUG_ON) {
+				System.out.printf("%-25s \n", league_name);
+			} else {
+				adminRemoteOperations.createLeague(league_name, "1", "0", "100", "0000-00-00", "0000-00-00");
+			}
+		}
+	}
+	
+	/**
+	 * Create and insert a place with random attributes
+	 * @param numberOfPlaces
+	 */
+	public static void testAdminCreatePlaces(int numberOfPlaces) {
+		
+	}
+	
+	
 }

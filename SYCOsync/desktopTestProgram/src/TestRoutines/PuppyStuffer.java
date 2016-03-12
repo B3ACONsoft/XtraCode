@@ -27,7 +27,11 @@ public class PuppyStuffer {
 	 */
 	public String getRandomTeamName() {
 		String name = getRandomName();
-		return "The_" + name + "s";
+		String output = "The_" + name;
+		if(!name.endsWith("s")) {
+			output += "s";
+		}
+		return output;
 	}
 	
 	/**
@@ -35,7 +39,11 @@ public class PuppyStuffer {
 	 */
 	public String getRandomLeagueName() {
 		String name = getRandomName();
-		return "League_of_" + name + "s";
+		String output = "League_of_" + name;
+		if(!name.endsWith("s")) {
+			output += "s";
+		}
+		return output;
 	}
 	
 	/**

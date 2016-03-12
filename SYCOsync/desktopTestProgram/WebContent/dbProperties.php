@@ -35,7 +35,7 @@ define("ADD_SPORT",
 define("ADD_LEAGUE",
        "INSERT INTO league
             (league_name, sport_id, min_age, max_age, start_date, end_date)
-            VALUES(:league_name, sport_id, min_age, max_age, start_date, end_date)");
+            VALUES(:league_name, :sport_id, :min_age, :max_age, :start_date, :end_date)");
             
 define("ADD_USER", 
        "INSERT INTO users 
@@ -45,7 +45,7 @@ define("ADD_USER",
 define("ADD_TEAM", 
        "INSERT INTO team
             (league_id, team_name, user_id)
-            VALUES(:league_id, :team_name, :user_id");
+            VALUES(:league_id, :team_name, :user_id)");
 
 define("ADD_PLAYER",
        "INSERT INTO player
@@ -60,7 +60,7 @@ define("ADD_EVENT",
 define("ADD_ENROLLMENT", 
        "INSERT INTO enrollment
             (user_id, player_id, team_id, league_id, enrollment_date, fee)
-            VALUES(:user_id, :player_id, :team_id, :league_id, :enrollment_date, :fee");
+            VALUES(:user_id, :player_id, :team_id, :league_id, :enrollment_date, :fee)");
             
 define("ADD_PLACE", 
        "INSERT INTO place
