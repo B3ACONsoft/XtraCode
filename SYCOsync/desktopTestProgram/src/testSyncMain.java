@@ -62,10 +62,7 @@ public class testSyncMain {
 		
 		PuppyStuffer stuffer = new PuppyStuffer();
 		for(int i = 0; i < 100; i++) {
-			int minimum = 0;
-			int maximum = 1;
-			int randomNum = minimum + (int)(Math.random() * (maximum + 1));
-			System.out.println(randomNum);
+			
 		}
 	}
 

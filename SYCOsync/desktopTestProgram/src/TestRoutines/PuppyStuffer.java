@@ -1,6 +1,11 @@
 package TestRoutines;
 import RandomNameGenerator.RandomNameGenerator;
-
+import SYCOServerAccess.RemoteConnection;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.ParseException;
+import org.json.JSONStringer;
+import javax.json.*;
 /**
  * The puppyStuffer is a means to populate the test datbase with semi-random values.
  * 
@@ -158,21 +163,52 @@ public class PuppyStuffer {
 		return phoneNumber.toString(); 
 	}
 	
+	/**
+	 * Helper method for doFullPuppyStuff()
+	 * Get JSONArray from a string();
+	 * 
+	 * http://www.tutorialspoint.com/json/json_java_example.htm
+	 * 
+	 * @param jsonString
+	 * @return
+	 */
+	public JsonArray getJSONArray(String jsonString) {
+		JsonReader jsonReader = Json.createParser();
+		JsonObject object = jsonReader.readObject();
+		jsonReader.close();
+	 return null;  
+	}
 	
 	/**
 	 * An instruction set for an amature taxidermist.
 	 * Would you just look at those creep eyes!!!
 	 * 
-	 * Fully populates the database with dummy data
+	 * Fully populates the database with dummy data.
+	 * Also sees what the deal is with the JSON stuff...
 	 * 
 	 *  The database should be EMPTY before this call is run!!!
 	 */
 	public void doFullPuppyStuff() {
-		//create and AdminTests class because we need those calls
-		AdminTests adminTests = new AdminTests();
-		//create 10 sports
 		
-		//create leagues
+		/*
+		 * create adminTests class, we need those calls
+		 */
+		AdminTests adminTests = new AdminTests();
+		
+		/*
+		 * Create 10 sports
+		 */
+		adminTests.testAdminCreateSports(10);
+		
+		/*
+		 * Get the current sports out of database
+		 * Create a league for each.
+		 */
+		String sportRecords = 
+				RemoteConnection.doPostRequest(
+						TestCommands.TestAdminSync.adminGetsAllSports);
+		
+		
 		
 		//create users.
 		//some admin, coach, and user

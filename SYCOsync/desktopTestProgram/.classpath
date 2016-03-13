@@ -9,5 +9,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/B3ACONsoft/commons-net-3.4/commons-net-3.4.jar"/>
+	<classpathentry kind="lib" path="C:/B3ACONsoft/json-20140107.jar"/>
+	<classpathentry kind="lib" path="C:/B3ACONsoft/javax.json-api-1.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
