@@ -9,6 +9,21 @@ import RandomNameGenerator.RandomNameGenerator;
  */
 public class PuppyStuffer {
 	/**
+	 * This is an array of partialy formed excuses used my terrible parents and players.
+	 * 
+	 */
+	private final String[] excuses = {
+			"I can't play because my _ _ed my _.",
+			"My child won't attend an event where the _er's are in attendance.",
+			"...Today I should also like to show you the drawing room, but today, you see, I have the fear.",
+			"The _son's poor breeding has given us the fear.",
+			"Quick smart my dear boy, I sense seepage!",
+			"I've just gone cold turkey after a year long heroine fueled bender.",
+			"My bowels are in a somewhat weakened state.",
+			"Donald Trump _ed at least ten times."
+	};
+	
+	/**
 	 * The random value generator.
 	 * This is NOT ours.
 	 * See https://github.com/kohsuke/wordnet-random-name
@@ -44,6 +59,58 @@ public class PuppyStuffer {
 			output += "s";
 		}
 		return output;
+	}
+	
+	/**
+	 * 
+	 * @return Returns a random sport name.
+	 */
+	public String getRandomSportName() {
+	    String name = getRandomName();
+	    String output = name + "ing";
+		return output;
+	}
+	
+	public String getYesOrNo() {
+		int minimum = 0;
+		int maximum = 1;
+		int randomNum = minimum + (int)(Math.random() * (maximum + 1));
+		
+		if(randomNum == 0) 
+			return "NO";
+		else 
+			return "YES";
+	}
+	
+	public String getExcuse() {
+		int minimum = 0;
+		int maximum = this.excuses.length;
+		int randomNum = minimum + (int)(Math.random() * (maximum));
+		
+		String excuse = this.excuses[randomNum];
+		
+		//check if we have replacement to do
+		//if we do then we replace all "_" with random words :)
+		if(excuse.contains("_")) {
+			StringBuilder excuseBuilder = new StringBuilder();
+			int lastSegEnd = 0;
+			for(int i = 0; i < excuse.length();i++) {
+				//we have a "_"
+				if(excuse.charAt(i) == '_') {
+					//append the string before the blank
+					excuseBuilder.append(excuse.substring(lastSegEnd, i));
+					//append the random word
+					excuseBuilder.append(this.getRandomName());
+					//set lastSegEnd
+					lastSegEnd = i + 1;
+				}
+			}
+			//take care of the end
+			excuseBuilder.append(excuse.substring(lastSegEnd, excuse.length()));
+			excuse = excuseBuilder.toString();
+		}
+		
+		return excuse;
 	}
 	
 	/**
@@ -89,5 +156,40 @@ public class PuppyStuffer {
 			}
 		}
 		return phoneNumber.toString(); 
+	}
+	
+	
+	/**
+	 * An instruction set for an amature taxidermist.
+	 * Would you just look at those creep eyes!!!
+	 * 
+	 * Fully populates the database with dummy data
+	 * 
+	 *  The database should be EMPTY before this call is run!!!
+	 */
+	public void doFullPuppyStuff() {
+		//create and AdminTests class because we need those calls
+		AdminTests adminTests = new AdminTests();
+		//create 10 sports
+		
+		//create leagues
+		
+		//create users.
+		//some admin, coach, and user
+		
+		//for each coach, make a team
+		
+		//for each user divide them evenly,
+		//create a player and 
+		//assign them to the teams
+		
+		//create an attendance table for each team
+		
+		//create some places
+		
+		//create some events
+		
+		//do the enrollement table
+		
 	}
 }

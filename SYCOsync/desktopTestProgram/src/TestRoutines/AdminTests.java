@@ -169,6 +169,23 @@ public class AdminTests {
 	}
 	
 	/**
+	 * Create and insert sports with random names.
+	 * 	--best on was "unfortunate holeing"
+	 * @param numberOfSports
+	 */
+	public static void testAdminCreateSports(int numberOfSports) {
+		int i = 0;
+		String sport_name = randGen.getRandomSportName();
+		for(;i < numberOfSports;i++) {
+			if(DebugFLAGS.LOCAL_DEBUG == DebugFLAGS.LOCAL_DEBUG_FLAGS.DEBUG_ON) {
+				System.out.printf("%-25s\n", sport_name);
+			} else {
+				adminRemoteOperations.createSport(sport_name);
+			}
+		}
+	}
+	
+	/**
 	 * Create an insert a league with a random name.
 	 * @param leagueName
 	 */
@@ -186,6 +203,7 @@ public class AdminTests {
 		}
 	}
 	
+	//TODO IMPLMENT ME!
 	/**
 	 * Create and insert a place with random attributes
 	 * @param numberOfPlaces
@@ -194,5 +212,52 @@ public class AdminTests {
 		
 	}
 	
+	//TODO IMPLMENT ME!
+	/**
+	 * Create and insert a randomly name event
+	 * @param numberOfEvents
+	 */
+	public static void testAdminCreateEvents(int numberOfEvents) {
+		
+	}
 	
+	//TODO IMPLMENT ME!
+	/**
+	 * creates an enrollment record.
+	 * 
+	 * 
+	 */
+	public static void testAdminCreateEnrollment() {
+		
+	}
+	
+	/**
+	 * Create a record in the attendance table for a given event and a given user.
+	 * <br>
+	 * @param event_id
+	 * @param user_id
+	 */
+	public static void testAdminCreateAttendanceRecord(String event_id, String user_id) {
+		
+	}
+	
+	
+	/**
+	 * Updates an attendance record for a given event and user.
+	 * <br>
+	 * @param user_id
+	 * @param player_id
+	 */
+	public static void testAdminUpdateAttendance(String event_id, String user_id) {
+		
+		String status = randGen.getYesOrNo();
+		String message;
+		
+		if(status.equals("NO")) {
+			message = randGen.getExcuse();
+		} else {
+			message = "I'm so excited to play sports OMG!!!";
+		}
+		
+	}
 }

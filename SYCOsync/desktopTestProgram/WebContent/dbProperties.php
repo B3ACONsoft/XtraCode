@@ -67,6 +67,18 @@ define("ADD_PLACE",
             (place_name, street_address, city, state, zip)
             VALUES(:place_name, :street_address, :city, :state, :zip)");
 
+define("ADD_ATTENDANCE",
+		"INSERT INTO attendance
+			(event_id, user_id, status)
+			VALUES(:event_id, :user_id, 'NO')");
+
+define("ADMIN_UPDATE_ATTENDANCE",
+		"UPDATE attendance
+			SET status = :status, message = :message
+			WHERE (event_id = :event_id)
+				AND
+				  (user_id = :user_id)");
+
 ////////////////////////////////////
 /*
     COACH PRIVLEDGE QUERIES

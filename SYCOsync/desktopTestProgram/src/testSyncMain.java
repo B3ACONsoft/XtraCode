@@ -1,6 +1,7 @@
 import Debugging.DebugFLAGS;
 import TestRoutines.AdminTests;
 import TestRoutines.CoachTests;
+import TestRoutines.PuppyStuffer;
 import TestRoutines.UserTests;
 import TestRoutines.UserValidationTests;
 
@@ -50,14 +51,22 @@ public class testSyncMain {
 	public static void main(String[] args) {
 		//debugPHP_ON();				
 		debugPHP_OFF();
-		//debugLocal_ON();
-		debugLocal_OFF();
+		debugLocal_ON();
+		//debugLocal_OFF();
 		
 		//userValidationTests.testUserValidation();
 		//AdminTests.testAdminGetAllData();
 		//AdminTests.testAdminCreateUsers(3, 4, 6);
 		//AdminTests.testAdminCreateTeams(1, 15, 15);
-		AdminTests.testAdminCreateLeagues(10);
+		//AdminTests.testAdminCreateLeagues(10);
+		
+		PuppyStuffer stuffer = new PuppyStuffer();
+		for(int i = 0; i < 100; i++) {
+			int minimum = 0;
+			int maximum = 1;
+			int randomNum = minimum + (int)(Math.random() * (maximum + 1));
+			System.out.println(randomNum);
+		}
 	}
 
 }
