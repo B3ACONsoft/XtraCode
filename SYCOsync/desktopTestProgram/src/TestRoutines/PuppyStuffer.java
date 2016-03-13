@@ -1,11 +1,11 @@
 package TestRoutines;
 import RandomNameGenerator.RandomNameGenerator;
 import SYCOServerAccess.RemoteConnection;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.ParseException;
-import org.json.JSONStringer;
+
+import java.io.StringReader;
+
 import javax.json.*;
+
 /**
  * The puppyStuffer is a means to populate the test datbase with semi-random values.
  * 
@@ -173,10 +173,13 @@ public class PuppyStuffer {
 	 * @return
 	 */
 	public JsonArray getJSONArray(String jsonString) {
-		JsonReader jsonReader = Json.createParser();
+		JsonArray output;
+		JsonReader jsonReader = Json.createReader(new StringReader(jsonString));
 		JsonObject object = jsonReader.readObject();
+		output = object.getJsonArray(jsonString);
 		jsonReader.close();
-	 return null;  
+		
+		return output;  
 	}
 	
 	/**
@@ -208,6 +211,9 @@ public class PuppyStuffer {
 				RemoteConnection.doPostRequest(
 						TestCommands.TestAdminSync.adminGetsAllSports);
 		
+		JsonArray jsArr_sports = getJSONArray(adminTests.testAdminGetAllSports());
+		
+		int i = 0;
 		
 		
 		//create users.

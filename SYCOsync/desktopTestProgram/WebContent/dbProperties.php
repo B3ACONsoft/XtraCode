@@ -4,9 +4,17 @@
         2/20/2016
 */
 //connection params
+/*
+ * 
+ */
+/*
 define("DSN", "mysql:host=localhost;dbname=remoteData");
 define("USERNAME", "root");
 define("PASSWORD", "remember");
+*/
+define("DSN", 'mysql:host=mysql13.000webhost.com;dbname=a7033823_b3acon');
+define("USERNAME", 'a7033823_dev');
+define("PASSWORD", 'bacon3');
 
 define("VALIDATE_USER", "SELECT user_type 
                          FROM users
@@ -112,8 +120,8 @@ define("GET_COACH_EVENTS",
        "NOTHING FOR NOW");
        
 //add a player to a team                            //can a coach do this?
-define("ADD_PLAYER", 
-       "NOTHING FOR NOW");
+//define("ADD_PLAYER", 
+//       "NOTHING FOR NOW");
 
 //change properties for a given event               //can a coach do this?
 define("UPDATE_EVENT", 

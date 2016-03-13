@@ -21,7 +21,8 @@ import Debugging.DebugFLAGS;
  */
 public final class RemoteConnection {
 	
-	private final static String 		SERVER_URL = "http://localhost/SYCOsync/sync.php";			
+	//private final static String 		SERVER_URL = "http://localhost/SYCOsync/sync.php";	
+	private final static String 		SERVER_URL = "http://capstone1.netai.net/devDave/sync.php";	
 	private static HttpURLConnection 	conn;             //http connection
     private static URL 					url;   
     

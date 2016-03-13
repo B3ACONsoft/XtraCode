@@ -51,8 +51,8 @@ public class testSyncMain {
 	public static void main(String[] args) {
 		//debugPHP_ON();				
 		debugPHP_OFF();
-		debugLocal_ON();
-		//debugLocal_OFF();
+		//debugLocal_ON();
+		debugLocal_OFF();
 		
 		//userValidationTests.testUserValidation();
 		//AdminTests.testAdminGetAllData();
@@ -61,9 +61,11 @@ public class testSyncMain {
 		//AdminTests.testAdminCreateLeagues(10);
 		
 		PuppyStuffer stuffer = new PuppyStuffer();
-		for(int i = 0; i < 100; i++) {
-			
-		}
+		//for(int i = 0; i < 25; i++) {
+		//	System.out.println(stuffer.getRandomSportName());
+		//stuffer.getJSONArray()
+		//}
+		stuffer.doFullPuppyStuff();
 	}
 
 }
