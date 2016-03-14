@@ -173,9 +173,9 @@ public class PuppyStuffer {
 	 * @return
 	 */
 	public JsonArray getJSONArray(String jsonString) {
-		JsonReader jsonReader = Json.createParser();
+		/*JsonReader jsonReader = Json.createParser();
 		JsonObject object = jsonReader.readObject();
-		jsonReader.close();
+		jsonReader.close();*/
 	 return null;  
 	}
 	

@@ -55,15 +55,16 @@ public class testSyncMain {
 		//debugLocal_OFF();
 		
 		//userValidationTests.testUserValidation();
-		//AdminTests.testAdminGetAllData();
+		AdminTests.testAdminGetAllData();
 		//AdminTests.testAdminCreateUsers(3, 4, 6);
 		//AdminTests.testAdminCreateTeams(1, 15, 15);
 		//AdminTests.testAdminCreateLeagues(10);
-		
+		/*
 		PuppyStuffer stuffer = new PuppyStuffer();
 		for(int i = 0; i < 100; i++) {
 			
 		}
+		*/
 	}
 
 }
