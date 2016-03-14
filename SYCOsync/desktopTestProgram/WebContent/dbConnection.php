@@ -46,6 +46,7 @@ function doInsert($query) {
 		    $error_message\r\n\r\n";
         }    
 }
+
 /**
  * Binds the values needed to insert a sport
  */

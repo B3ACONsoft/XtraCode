@@ -23,6 +23,33 @@ public class AdminTests {
 	 */
 	public static AdminRemoteOperations adminRemoteOperations = new AdminRemoteOperations();
 	
+	public static String testAdminGetAllSports() {
+		return RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllSports);
+	}
+	
+	public static String testAdminGetAllLeagues() {
+		return RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllLeagues);
+	}
+	
+	public static String testAdminGetAllUsers() {
+		return RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllUsers);
+	}
+	
+	public static String testAdminGetAllTeams() {
+		return RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllTeams);
+	}
+	
+	public static String testAdminGetAllEnrollment() {
+		return RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllEnrollment);
+	}
+	
+	public static String testAdminGetAllPlaces() {
+		return RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllPlaces);
+	}
+	
+	public static String testAdminGetAllEvents() {
+		return RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllEvents);
+	}
 	
 	/**
 	 * Sends the following commands to the server
