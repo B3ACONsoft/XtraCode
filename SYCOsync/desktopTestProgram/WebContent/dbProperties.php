@@ -7,15 +7,15 @@
 /*
  * 
  */
-/*
 define("DSN", "mysql:host=localhost;dbname=remoteData");
 define("USERNAME", "root");
 define("PASSWORD", "remember");
-*/
+
+/*
 define("DSN", 'mysql:host=mysql13.000webhost.com;dbname=a7033823_b3acon');
 define("USERNAME", 'a7033823_dev');
 define("PASSWORD", 'bacon3');
-
+*/
 define("VALIDATE_USER", "SELECT user_type 
                          FROM users
                          WHERE (user_id= :user_id)

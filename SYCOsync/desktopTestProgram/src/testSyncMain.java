@@ -1,3 +1,13 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.StringReader;
+
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonReader;
+
 import Debugging.DebugFLAGS;
 import TestRoutines.AdminTests;
 import TestRoutines.CoachTests;
@@ -55,7 +65,7 @@ public class testSyncMain {
 		debugLocal_OFF();
 		
 		//userValidationTests.testUserValidation();
-		AdminTests.testAdminGetAllData();
+		//AdminTests.testAdminGetAllData();
 		//AdminTests.testAdminCreateUsers(3, 4, 6);
 		//AdminTests.testAdminCreateTeams(1, 15, 15);
 		//AdminTests.testAdminCreateLeagues(10);
@@ -66,13 +76,36 @@ public class testSyncMain {
 			
 		}
 		*/
-=======
+
 		//for(int i = 0; i < 25; i++) {
 		//	System.out.println(stuffer.getRandomSportName());
 		//stuffer.getJSONArray()
 		//}
-		stuffer.doFullPuppyStuff();
->>>>>>> 6b55ade68e5d19c3ad332fbaf8465a69a9819e01
+		//stuffer.doFullPuppyStuff();
+		
+		String siteResponse = AdminTests.testAdminGetAllSports();
+		StringBuilder responseJsonBuilder = new StringBuilder();
+		
+		int i = 0;
+		while(siteResponse.charAt(i) != '<' && siteResponse.charAt(i+1) != '!') {
+			responseJsonBuilder.append(siteResponse).charAt(i);
+			i++;
+		}
+		String responseJson = responseJsonBuilder.toString();
+		StringReader stringReader = new StringReader(responseJson);
+		
+	
+		JsonReader jsonReader = null;
+		JsonArray jsonArray = null;
+		
+		
+		jsonReader = Json.createReader(stringReader);
+		jsonArray = (JsonArray) jsonReader.readArray();
+		
+		for(i = 0; i < jsonArray.size(); i++) {
+			System.out.println(jsonArray.get(i));
+		}
+		
 	}
 
 }
