@@ -19,7 +19,7 @@ import Debugging.DebugFLAGS;
  * @author David Johnson
  *
  */
-public final class RemoteConnection {
+public class RemoteConnection {
 	
 	//private final static String 		SERVER_URL = "http://localhost/SYCOsync/sync.php";	
 	//private final static String 		SERVER_URL = "http://capstone1.netai.net/devDave/sync.php";

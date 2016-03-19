@@ -82,7 +82,7 @@ public class testSyncMain {
 		//stuffer.getJSONArray()
 		//}
 		//stuffer.doFullPuppyStuff();
-		
+		/*
 		String siteResponse = AdminTests.testAdminGetAllSports();
 		StringBuilder responseJsonBuilder = new StringBuilder();
 		
@@ -105,7 +105,7 @@ public class testSyncMain {
 		for(i = 0; i < jsonArray.size(); i++) {
 			System.out.println(jsonArray.get(i));
 		}
-		
+		*/
 	}
 
 }
