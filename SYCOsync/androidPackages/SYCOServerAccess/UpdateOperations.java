@@ -1,15 +1,15 @@
 package SYCOServerAccess;
 
 
-import dbojects.Attendance;
-import dbojects.Enrollment;
-import dbojects.Event;
-import dbojects.League;
-import dbojects.Place;
-import dbojects.Player;
-import dbojects.Sport;
-import dbojects.Team;
-import dbojects.Users;
+import dbobjects.Attendance;
+import dbobjects.Enrollment;
+import dbobjects.Event;
+import dbobjects.League;
+import dbobjects.Place;
+import dbobjects.Player;
+import dbobjects.Sport;
+import dbobjects.Team;
+import dbobjects.Users;
 
 public class UpdateOperations extends RemoteOperations {
 

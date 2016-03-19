@@ -1,7 +1,7 @@
 package SYCOServerAccess;
 import java.util.HashMap;
 
-import dbojects.*;
+import dbobjects.*;
 
 /**
  * The parent class for a user types remote operation.

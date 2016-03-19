@@ -1,7 +1,7 @@
 package SYCOServerAccess;
 
 
-import dbojects.*;
+import dbobjects.*;
 
 public class RemoteInsertOperations extends RemoteOperations {
 
@@ -16,7 +16,7 @@ public class RemoteInsertOperations extends RemoteOperations {
      * @return The result of the operation.
      */
     public String createSport(String sportName) {
-        command = SQLCommandMaps.SelectAllCommandMaps.adminCreateSport;
+        command = SQLCommandMaps.InsertCommandMaps.adminCreateSport;
         String result = "";
         try
         {
@@ -47,7 +47,7 @@ public class RemoteInsertOperations extends RemoteOperations {
                                String start_date,
                                String end_date) {
 
-        command = SQLCommandMaps.SelectAllCommandMaps.adminCreateLeague;
+        command = SQLCommandMaps.InsertCommandMaps.adminCreateLeague;
         String result = "";
         try
         {
@@ -84,7 +84,7 @@ public class RemoteInsertOperations extends RemoteOperations {
                              String user_type,
                              String email,
                              String password) {
-        command = SQLCommandMaps.SelectAllCommandMaps.adminCreateUser;
+        command = SQLCommandMaps.InsertCommandMaps.adminCreateUser;
         String result = "";
         try
         {
@@ -114,7 +114,7 @@ public class RemoteInsertOperations extends RemoteOperations {
     public String createTeam(String league_id,
                              String team_name,
                              String user_id) {
-        command = SQLCommandMaps.SelectAllCommandMaps.adminCreateTeam;
+        command = SQLCommandMaps.InsertCommandMaps.adminCreateTeam;
         String result = "";
         try
         {
@@ -146,7 +146,7 @@ public class RemoteInsertOperations extends RemoteOperations {
                                    String league_id,
                                    String enrollment_date,
                                    String fee) {
-        command = SQLCommandMaps.SelectAllCommandMaps.adminCreateEnrollment;
+        command = SQLCommandMaps.InsertCommandMaps.adminCreateEnrollment;
         String result = "";
         try
         {
@@ -177,7 +177,7 @@ public class RemoteInsertOperations extends RemoteOperations {
                               String street_address,
                               String city,
                               String zip) {
-        command = SQLCommandMaps.SelectAllCommandMaps.adminCreatePlace;
+        command = SQLCommandMaps.InsertCommandMaps.adminCreatePlace;
         String result = "";
         try
         {
@@ -209,7 +209,7 @@ public class RemoteInsertOperations extends RemoteOperations {
                               String place_id,
                               String home_team,
                               String away_team) {
-        command = SQLCommandMaps.SelectAllCommandMaps.adminCreateEvent;
+        command = SQLCommandMaps.InsertCommandMaps.adminCreateEvent;
         String result = "";
         try
         {

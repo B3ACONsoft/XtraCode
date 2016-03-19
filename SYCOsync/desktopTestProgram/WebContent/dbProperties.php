@@ -80,12 +80,56 @@ define("ADD_ATTENDANCE",
 			(event_id, user_id, status)
 			VALUES(:event_id, :user_id, 'NO')");
 
+/*
+ * updates start here...
+ */
+
 define("ADMIN_UPDATE_ATTENDANCE",
 		"UPDATE attendance
 			SET status = :status, message = :message
 			WHERE (event_id = :event_id)
 				AND
 				  (user_id = :user_id)");
+
+define("UPDATE_SPORT",
+		"UPDATE sport
+		SET sport_name = :sport_name
+        WHERE sport_id = :sport_id");
+
+define("UPDATE_LEAGUE",
+		"UPDATE league
+            (league_name, sport_id, min_age, max_age, start_date, end_date)
+            VALUES(:league_name, :sport_id, :min_age, :max_age, :start_date, :end_date)");
+
+define("ADD_USER",
+		"INSERT INTO users
+             (fname, lname, phone, emergency, email, user_type, password)
+             VALUES(:fname, :lname, :phone, :emergency, :email, :user_type, :password)");
+ 
+define("ADD_TEAM",
+		"INSERT INTO team
+            (league_id, team_name, user_id)
+            VALUES(:league_id, :team_name, :user_id)");
+
+define("ADD_PLAYER",
+		"INSERT INTO player
+            (fname, lname, user_id)
+            VALUES(:fname, :lname, :user_id)");
+
+define("ADD_EVENT",
+		"INSERT INTO event
+            (event_type, start_date_time, place_id, home_team_id, away_team_id)
+            VALUES(:event_type, :start_date, :place_id, :home_team_id, :away_team_id)");
+
+define("ADD_ENROLLMENT",
+		"INSERT INTO enrollment
+            (user_id, player_id, team_id, league_id, enrollment_date, fee)
+            VALUES(:user_id, :player_id, :team_id, :league_id, :enrollment_date, :fee)");
+
+define("ADD_PLACE",
+		"INSERT INTO place
+            (place_name, street_address, city, state, zip)
+            VALUES(:place_name, :street_address, :city, :state, :zip)");
 
 ////////////////////////////////////
 /*
