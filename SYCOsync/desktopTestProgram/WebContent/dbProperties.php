@@ -149,12 +149,130 @@ define("ADD_PLACE",
  */
 
 //START SPORT SECTION
+define("GET_SPORTS_BY_COACH",
+		"SELECT
+			s.sport_id,
+			s.sport_name
+		FROM
+			sport s,
+			league l,
+			team t
+		WHERE
+			t.user_id = :coach_id
+				AND
+			t.league_id = l.league_id
+				AND
+			l.sport_id = s.sport_id");
 
+define("GET_SPORTS_BY_ADMIN",
+		"SELECT
+			s.sport_id,
+			s.sport_name
+		FROM
+			sport s,
+			league l
+		WHERE
+			l.user_id = :current_admin_id
+				AND
+			l.sport_id = s.sport_id");
+
+define("GET_SPORT_BY_NAME",
+		"SELECT * FROM sport
+			WHERE
+				sport_name = :sport_name");
 //END SPORT SECTION
+
 //START USER SECTION
+define("GET_USER_BY_EMAIL",
+		"SELECT * FROM users
+			WHERE email = :email");
+
+define("GET_USER_BY_ID",
+	    "SELECT * FROM users
+			WHERE
+				user_id = :user_id");
+
+define("GET_USERS_BY_COACH",
+		"SELECT
+			u.user_id,
+			u.fname,
+			u.lname,
+			u.phone,
+			u.emergency,
+			u.email,
+			u.user_type,
+			u.password
+		FROM users u
+			WHERE
+				user_type = 'COACH'
+					EXCEPT SELECT
+						u.user_id,
+						u.fname,
+						u.lname,
+						u.phone,
+						u.emergency,
+						u.email,
+						u.user_type,
+						u.password
+							FROM users u, team t
+								WHERE
+									u.user_id = t.user_id
+										AND
+									t.league_id = :current_league_id");
+
+define("GET_USERS_BY_TEAM",
+			"SELECT			
+				u.user_id,
+				u.fname,
+				u.lname,
+				u.phone,
+				u.emergency,
+				u.email,
+				u.user_type,
+				u.password
+			FROM users u, enrollment e
+				WHERE
+					u.user_id = e.user_id
+						AND
+					e.team_id = :current_team_id");
 //END USER SECTION
 
 //START LEAGUE SECTION
+define("GET_LEAGUES_BY_COACH_AND_SPORT",
+			"SELECT
+				l.leauge_id,
+				l.user_id,
+				l.sport_id,
+				l.league_name,
+				l.min_age,
+				l.max_age,
+				l.start_date,
+				l.end_date
+			FROM
+				league l, team t
+			WHERE
+				t.user_id = :coach_id
+					AND
+		        t.league_id = l.league_id
+					AND
+				l.sport_id = :sport_id");
+
+define("GET_LEAGUE_BY_ID",
+		"SELECT * FROM league
+			WHERE
+				league_id = :league_id");
+
+define("GET_LEAGUES_BY_ADMINID_SPORTID",
+		"SELECT * FROM league
+			WHERE
+				user_id = :current_admin_id
+					AND
+				sport_id = :current_sport_id");
+
+define("GET_LEAGUES_BY_SPORTID",
+		"SELECT * FROM league
+			WHERE
+				sport_id = :current_sport_id");
 //END LEAGUE SECTION
 
 //START TEAM SECTION
