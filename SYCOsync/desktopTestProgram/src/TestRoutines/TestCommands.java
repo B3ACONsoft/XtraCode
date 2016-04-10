@@ -14,6 +14,15 @@ import java.util.HashMap;
  */
 public final class TestCommands {
 	public static final class CheckUserValidation {
+		public static final HashMap<String, String> patrickCurrinCredentials;
+		static {
+			patrickCurrinCredentials = new HashMap<String, String>();
+			{
+				patrickCurrinCredentials.put("validation_type", "EMAIL");
+				patrickCurrinCredentials.put("email", "CURRIN.PATRICK@YAHOO.COM");
+				patrickCurrinCredentials.put("password", "PASSWORD");
+			}
+		};
 		public static final HashMap<String, String> validCredentials;
 		static {
 			validCredentials = new HashMap<String, String>(); 

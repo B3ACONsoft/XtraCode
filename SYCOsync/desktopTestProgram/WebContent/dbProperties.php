@@ -7,15 +7,16 @@
 /*
  * 
  */
+/*
 define("DSN", "mysql:host=localhost;dbname=remoteData");
 define("USERNAME", "root");
 define("PASSWORD", "remember");
+*/
 
-/*
 define("DSN", 'mysql:host=mysql13.000webhost.com;dbname=a7033823_b3acon');
 define("USERNAME", 'a7033823_dev');
 define("PASSWORD", 'bacon3');
-*/
+
 define("VALIDATE_USER", "SELECT user_type 
                          FROM users
                          WHERE (user_id= :user_id)
@@ -98,6 +99,11 @@ define("UPDATE_SPORT",
 
 define("UPDATE_LEAGUE",
 		"UPDATE league
+		SET 
+			league_name = :league_name, 
+			sport_id = :sport, 
+		    min_age = :min_age,
+		    max_age =  
             (league_name, sport_id, min_age, max_age, start_date, end_date)
             VALUES(:league_name, :sport_id, :min_age, :max_age, :start_date, :end_date)");
 
@@ -130,7 +136,48 @@ define("ADD_PLACE",
 		"INSERT INTO place
             (place_name, street_address, city, state, zip)
             VALUES(:place_name, :street_address, :city, :state, :zip)");
+/*
+ * 
+ * BELOW ARE QUERIES WHICH ARE COVERSION FROM THE DATASOURCE.JAVA CLASS
+ * 
+ */
 
+//START TEAM SECTION
+
+define("GET_TEAM_BY_TEAM_ID",
+		"SELECT * FROM team
+			WHERE team_id = :team_id");
+
+define("UPDATE_TEAM_COACH", 
+		"UPDATE team
+			SET
+				user_id = :user_id
+			WHERE
+				team_id = :team_id"
+		);
+
+define("UPDATE_TEAM_NAME",
+		"UPDATE team
+			SET
+				team_name = :team_name
+			WHERE
+				team_id = :team_id");
+
+define("GET_TEAMS_BY_COACH",
+		"SELECT * FROM team
+			WHERE team_id = :current_user_id
+				AND
+				  league_id = :current_league_id");
+
+define("GET_GET_TEAMS_BY_LEAGUE",
+		"SELECT * FROM team
+			WHERE
+				user_id = :current_user_id
+					AND
+				league_id = :current_league_id");
+
+
+//END TEAM SECTION
 ////////////////////////////////////
 /*
     COACH PRIVLEDGE QUERIES

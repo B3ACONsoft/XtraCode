@@ -64,7 +64,7 @@ public class testSyncMain {
 		//debugLocal_ON();
 		debugLocal_OFF();
 		
-		//userValidationTests.testUserValidation();
+		userValidationTests.testUserValidation();
 		//AdminTests.testAdminGetAllData();
 		//AdminTests.testAdminCreateUsers(3, 4, 6);
 		//AdminTests.testAdminCreateTeams(1, 15, 15);
