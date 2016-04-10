@@ -31,10 +31,13 @@ define("VALIDATE_USER", "SELECT user_type
 define("GET_ALL_SPORTS", "SELECT * FROM sport");
 define("GET_ALL_LEAGUES", "SELECT * FROM league");
 define("GET_ALL_USERS", "SELECT * FROM users");
+define("GET_PLAYERS", "SELECT * FROM player");
 define("GET_ALL_TEAMS", "SELECT * FROM team");
 define("GET_ALL_ENROLLMENT", "SELECT * FROM enrollment");
 define("GET_ALL_PLACES", "SELECT * FROM place");
 define("GET_ALL_EVENTS", "SELECT * FROM events");
+define("GET_ALL_ATTENDANCE", "SELECT * FROM attendance");
+
 
 define("ADD_SPORT",
        "INSERT INTO sport
@@ -136,14 +139,25 @@ define("ADD_PLACE",
 		"INSERT INTO place
             (place_name, street_address, city, state, zip)
             VALUES(:place_name, :street_address, :city, :state, :zip)");
+
 /*
  * 
  * BELOW ARE QUERIES WHICH ARE COVERSION FROM THE DATASOURCE.JAVA CLASS
  * 
+ * 
+ * START CONVERSION
  */
 
-//START TEAM SECTION
+//START SPORT SECTION
 
+//END SPORT SECTION
+//START USER SECTION
+//END USER SECTION
+
+//START LEAGUE SECTION
+//END LEAGUE SECTION
+
+//START TEAM SECTION
 define("GET_TEAM_BY_TEAM_ID",
 		"SELECT * FROM team
 			WHERE team_id = :team_id");
@@ -175,9 +189,99 @@ define("GET_GET_TEAMS_BY_LEAGUE",
 				user_id = :current_user_id
 					AND
 				league_id = :current_league_id");
-
-
 //END TEAM SECTION
+
+//START PLAYER SECTION
+define("GET_PLAYERS_BY_TEAM",
+		"SELECT p.player_id,
+				p.fname,
+				p.lname,
+				p.user_id
+		FROM
+			player p,
+			enrollment e
+		WHERE
+			p.player_id = e.player_id
+				AND
+			e.team_id = :current_team_id");
+
+define("GET_PLAYER_BY_ID",
+		"SELECT * FROM player
+			WHERE
+				player_id = :current_player_id");
+
+define("GET_PLAYER_BY_FIRST_LAST_PLAYER_ID",
+		"SELECT * FROM player
+			WHERE
+				fname = :current_first_name
+					AND
+				lname = :current_last_name
+					AND
+				player_id = :current_player_id");
+
+define("GET_PLAYER_BY_FIRST_LAST_USER_ID",
+		"SELECT * FROM player
+			WHERE
+				fname = :current_first_name
+					AND
+				lname = current_last_name
+					AND
+				user_id = :current_user_id");
+//END PLAYER SECTION
+
+//START ENROLLEMENT SECTION
+//TODO UPDATE_COACH_ENROLLMENT_BY_TEAMID_LEAGUEID
+define("GET_ENROLLMENT_BY_USERID_LEAGUEID_TEAMID",
+			"SELECT * FROM enrollment
+				WHERE 
+					user_id = :current_userid
+						AND
+					league_id = :current_league_id
+						AND
+					team_id = :current_team_id");
+
+define("GET_ENROLLMENT_BY_PLAYERID_USERID_CURRENTLEAGUE_CURRENTTEAM",
+		"SELECT * FROM enrollment
+			WHERE 
+				player_id = :current_player_id
+					AND
+				user_id = :current_user_id
+					AND
+				league_id = :current_league_id
+					AND
+				team_id = :current_team_id");
+//END ENROLLMENT SECTION
+
+//START PLACE SECTION
+define("GET_PLACE_BY_ID",
+		"SELECT * FROM place
+			WHERE
+				place_id = :current_place_id");
+//END PLACE SECTION
+
+//START EVENT SECTION
+define("GET_EVENTS_BY_TEAM",
+		"SELECT * FROM events
+			WHERE
+				home_team_id = :home_team_id
+					OR
+				away_team_id = :away_team_id");
+
+define("GET_EVENTS_BY_PLACEID",
+		"SELECT * FROM events
+			WHERE
+				place_id = :place_id");
+//END EVENT SECTION
+
+//START ATTENDANCE SECTION
+
+//END ATTENDANCE SECTION
+
+/*
+ * 
+ * END CONVERSION
+ * 
+ */
 ////////////////////////////////////
 /*
     COACH PRIVLEDGE QUERIES
