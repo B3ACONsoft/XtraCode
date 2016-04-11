@@ -47,6 +47,28 @@ function doInsert($query) {
         }    
 }
 
+
+//FIXME: REMOVE AFTER TESTING...
+function doSelect($query) {
+	//echo "in doSelect()\r\n";
+	global $db;
+	$result = $db->query($query);
+
+	return $result;
+}
+
+/**
+ * Do a select operation on a given prepared statement.
+ *
+ * @param unknown $query
+ */
+function doPrepSelect($query) {
+	//echo "in prepSelect()";
+	global $db;
+	$query->execute();
+	return $query->fetchAll();
+}
+
 /**
  * Binds the values needed to insert a sport
  */
@@ -187,26 +209,6 @@ function insertOperation($values) {
     } 
 }
 
-//FIXME: REMOVE AFTER TESTING...
-function doSelect($query) {
-    //echo "in doSelect()\r\n";
-    global $db;
-    $result = $db->query($query);
-    
-    return $result;
-}
-
-/**
- * Do a select operation on a given prepared statement.
- * 
- * @param unknown $query
- */
-function doPrepSelect($query) {
-    //echo "in prepSelect()";
-    global $db;
-    $query->execute();
-    return $query->fetchAll();
-}
 
 /**
  * Switch on table name.
@@ -386,6 +388,196 @@ function selectOperation($values) {
             echo json_encode($result);
     }
     //echo "end select operation\r\n";
+}
+
+function updateOperation($values) {
+	//echo "begin update operation\r\n";
+	global $db;
+	$query = null;
+	$result = null;
+	
+	if($db != null) {
+		/*
+		 * SWITCH ON WHICH TABLE WE ARE ACTING ON.
+		 */
+		switch($values['table']) {
+			 
+			/*
+			 * SPORT TABLE UPDATE OPTIONS
+			 */
+			case 'SPORTS':
+				switch($values['command']) {
+
+				}
+				break;
+				 
+				/*
+				 * LEAGUE TABLE UPDATE OPTIONS
+				 */
+			case 'LEAGUE':
+				switch($values['command']) {
+
+				}
+	
+				 
+				/*
+				 * USER TABLE UPDATE OPTIONS
+				 */
+			case 'USERS':
+				switch($values['command']) {
+
+				}
+				break;
+	
+				/*
+				 * TEAM TABLE UPDATE OPTIONS
+				 */
+			case 'TEAM':
+				switch($values['command']) {
+					case 'update_team_name':
+						$query = $db->prepare(UPDATE_TEAM_NAME);
+						break;
+					case 'update_team_coach':
+						$query = $db->prepare(UPDATE_TEAM_COACH);
+						break;
+				}
+				break;
+	
+			case 'PLAYER':
+				switch($values['command']){
+
+				}
+				break;
+				 
+				/*
+				 * ENROLLMENT TABLE UPDATE OPTIONS
+				 */
+			case 'ENROLLMENT':
+				switch($values['command']) {
+	
+				}
+				break;
+	
+				/*
+				 * PLACE TABLE UPDATE OPTIONS
+				 */
+			case 'PLACE':
+				switch($values['command']) {
+	
+				}
+				break;
+	
+				/*
+				 * EVENTS TABLE UPDATE OPTIONS
+				 */
+			case 'EVENTS':
+				switch($values['command']) {
+
+				}
+				break;
+		}
+	
+		if($query != null) {
+			$result = doPrepUpdate($query);
+		}
+		echo json_encode($result);
+	}
+	//echo "end select operation\r\n"
+}
+
+function deleteOperation($values) {
+	//echo "begin delete operation\r\n";
+	global $db;
+	$query = null;
+	$result = null;
+
+	if($db != null) {
+		/*
+		 * SWITCH ON WHICH TABLE WE ARE ACTING ON.
+		 */
+		switch($values['table']) {
+
+			/*
+			 * SPORT TABLE DELETE OPTIONS
+			 */
+			case 'SPORTS':
+				switch($values['command']) {
+
+				}
+				break;
+					
+				/*
+				 * LEAGUE TABLE DELETE OPTIONS
+				 */
+			case 'LEAGUE':
+				switch($values['command']) {
+
+				}
+
+					
+				/*
+				 * USER TABLE DELETE OPTIONS
+				 */
+			case 'USERS':
+				switch($values['command']) {
+
+				}
+				break;
+
+				/*
+				 * TEAM TABLE DELETE OPTIONS
+				 */
+			case 'TEAM':
+				switch($values['command']) {
+					case 'DELETE_team_name':
+						$query = $db->prepare(UPDATE_TEAM_NAME);
+						break;
+					case 'update_team_coach':
+						$query = $db->prepare(UPDATE_TEAM_COACH);
+						break;
+				}
+				break;
+
+			case 'PLAYER':
+				switch($values['command']){
+
+				}
+				break;
+					
+				/*
+				 * ENROLLMENT TABLE DELETE OPTIONS
+				 */
+			case 'ENROLLMENT':
+				switch($values['command']) {
+
+				}
+				break;
+
+				/*
+				 * PLACE TABLE DELETE OPTIONS
+				 */
+			case 'PLACE':
+				switch($values['command']) {
+
+				}
+				break;
+
+				/*
+				 * EVENTS TABLE DELETE OPTIONS
+				 */
+			case 'EVENTS':
+				switch($values['command']) {
+
+				}
+				break;
+		}
+
+		if($query != null) {
+			$result = doPrepUpdate($query);
+		}
+		echo json_encode($result);
+	}
+	//echo "end select operation\r\n"
 }
 
 /**
