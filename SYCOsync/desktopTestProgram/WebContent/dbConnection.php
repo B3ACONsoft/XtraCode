@@ -214,6 +214,12 @@ function doPrepSelect($query) {
  * Do select operation.
  * Echo the result in JSON format.
  * 
+ * 
+ * 4/10/2016
+ * 	Dave
+ * 		we add new options for a select statement
+ * 		
+ * 
  * @param unknown $values
  */
 function selectOperation($values) {
@@ -223,30 +229,157 @@ function selectOperation($values) {
     $result = null;
     
     if($db != null) {
+    		/*
+    		 * SWITCH ON WHICH TABLE WE ARE ACTING ON.
+    		 */
             switch($values['table']) {
+        	
+        	/*
+        	 * SPORT TABLE SELECT OPTIONS
+        	 */
             case 'SPORTS':
-                $query = $db->prepare(GET_ALL_SPORTS);
+            		switch($values['command']) {
+            			case 'get_all':
+            				$query = $db->prepare(GET_ALL_SPORTS);
+            				break;
+            			case 'get_sports_by_coach':
+            				$query = $db->prepare(GET_ALL_SPORTS);
+            				break;
+            			case 'get_sports_by_admin':
+            				$query = $db->prepare(GET_SPORTS_BY_ADMIN);
+            				break;
+            			case 'get_sports_by_name':
+            				$query = $db->prepare(GET_SPORT_BY_NAME);
+            				break;
+            		}
                 break;
+               
+            /*
+             * LEAGUE TABLE SELECT OPTIONS 
+             */
             case 'LEAGUE':
-                $query = $db->prepare(GET_ALL_LEAGUES);
-                break;
+            	switch($values['command']) {
+            		case 'get_all':
+            			$query = $db->prepare(GET_ALL_LEAGUES);
+            			break;
+            		case 'get_leagues_by_coach_and_sport':
+            			$query = $db->prepare(GET_LEAGUES_BY_COACH_AND_SPORT);
+            			break;
+            		case 'get_league_by_id':
+            			$query = $db->prepare(GET_LEAGUE_BY_ID);
+            			break;
+            		case 'get_leagues_by_adminid_and_sportid':
+            			$query = $db->prepare(GET_LEAGUES_BY_ADMINID_SPORTID);
+            			break;
+            		case 'get_leagues_by_sportid':
+            			$query = $db->prepare(GET_LEAGUES_BY_SPORTID);
+            			break;
+            	}
+
+            	
+			/*
+			 * USER TABLE SELECT OPTIONS
+			 */
             case 'USERS':
-                //echo "start select on all teams\r\n";
-                $query = $db->prepare(GET_ALL_USERS);
+            	switch($values['command']) {
+            		case 'get_all':
+            			$query = $db->prepare(GET_ALL_USERS);
+            			break;
+            		case 'get_users_by_coach':
+            			$query = $db->prepare(GET_USERS_BY_COACH);
+            			break;
+            		case 'get_users_by_team':
+            			$query = $db->prepare(GET_USERS_BY_TEAM);
+            			break;
+            	}
                 break;
+            
+            /*
+             * TEAM TABLE SELECT OPTIONS
+             */
             case 'TEAM':
-                $query = $db->prepare(GET_ALL_TEAMS);
+            	switch($values['command']) {
+            		case 'get_all':
+            			$query = $db->prepare(GET_ALL_TEAMS);
+            			break;
+            		case 'get_teams_by_coach':
+            			$query = $db->prepare(GET_TEAMS_BY_COACH);
+            			break;
+            		case 'get_teams_by_league':
+            			$query = $db->prepare(GET_TEAMS_BY_LEAGUE);
+            			break;
+            	}
                 break;
+            
+            case 'PLAYER':
+            	switch($values['command']){
+            		case 'get_all':
+            			$query = $db->prepare(GET_ALL_PLAYERS);
+            		break;
+            		case 'get_players_by_team':
+            			$query = $db->prepare(GET_PLAYERS_TEAM);
+            			break;
+            		case 'get_player_by_id':
+            			$query = $db->prepare(GET_PLAYER_BY_ID);
+            			break;
+            		case 'get_player_by_first_last_playerid':
+            			$query = $db->prepare(GET_PLAYER_BY_FIRST_LAST_PLAYER_ID);
+            			break;
+            		case 'get_player_by_first_last_userid':
+            			$query = $db->prepare(GET_PLAYER_BY_FIRST_LAST_USER_ID);
+            			break;
+            	}
+            	break;
+            	
+            /*
+             * ENROLLMENT TABLE SELECT OPTIONS
+             */
             case 'ENROLLMENT':
-                $query = $db->prepare(GET_ALL_ENROLLMENT);
+            	switch($values['command']) {
+            		case 'get_all':
+            			$query = $db->prepare(GET_ALL_ENROLLMENT);
+            			break;
+            		case 'get_enrollment_by_userid_leagueid_teamid':
+            			$query = $db->prepare(GET_ENROLLMENT_BY_USERID_LEAGUEID_TEAMID);
+            			break;
+            		case 'get_enrollment_by_playerid_userid_currentleague_currentteam':
+            			$query = $db->prepare(GET_ENROLLMENT_BY_PLAYERID_USERID_CURRENTLEAGUE_CURRENTTEAM);
+            			break;
+            	}
                 break;
+                
+            /*
+             * PLACE TABLE SELECT OPTIONS
+             */
             case 'PLACE':
-                $query = $db->prepare(GET_ALL_PLACES);
+            	switch($values['command']) {
+            		case 'get_all':
+            			$query = $db->prepare(GET_ALL_PLACES);
+            			break;
+            		case 'get_place_by_id':
+            			$query = $db->prepare(GET_PLACE_BY_ID);
+            			break;
+            	}
                 break;
+                
+            /*
+             * EVENTS TABLE SELECT OPTIONS
+             */
             case 'EVENTS':
-                $query = $db->prepare(GET_ALL_EVENTS);
-                break;
+            	switch($values['command']) {
+            		case 'get_all':
+            			$query = $db->prepare(GET_ALL_EVENTSS);
+            			break;
+            		case 'get_events_by_team':
+            			$query = $db->prepare(GET_EVENTS_BY_TEAM);
+            			break;
+            		case 'get_events_by_placeid':
+            			$query = $db->prepare(GET_EVENTS_BY_PLACEID);
+            			break;
+            	}
+            	break;
             }
+            
             if($query != null) {
                 $result = doPrepSelect($query);
             }
