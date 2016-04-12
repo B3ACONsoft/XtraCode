@@ -69,94 +69,6 @@ function doPrepSelect($query) {
 	return $query->fetchAll();
 }
 
-/**
- * Binds the values needed to insert a sport
- */
-function addSportBinding(&$query, $values) {
-	$query->bindParam(':sport_name', $values['sport_name']);
-	
-}
-
-/**
- * Binds the values needed to insert a league
- */
-function addLeagueBinding(&$query, $values) {
-	$query->bindParam(':league_name', $values['league_name']);
-	$query->bindParam(':sport_id', $values['sport_id']);
-	$query->bindParam(':min_age', $values['min_age']);
-	$query->bindParam(':max_age', $values['max_age']);
-	$query->bindParam(':start_date', $values['start_date']);
-	$query->bindParam(':end_date', $values['end_date']);
-}
-
-/**
- * Binds the values needed to insert a user.
- *
- * @param unknown $query
- * @param unknown $values
- */
-function addUserBinding(&$query, $values) {
-	$query->bindParam(':fname', $values['fname']);
-	$query->bindParam(':lname', $values['lname']);
-	$query->bindParam(':phone', $values['phone']);
-	$query->bindParam(':emergency', $values['emergency']);
-	$query->bindParam(':email', $values['email']);
-	$query->bindParam(':user_type', $values['user_type']);
-	$query->bindParam(':password', $values['password']);
-}
-
-/**
- * Binds the values needed to insert a team
- */
-function addTeamBinding(&$query, $values) {
-	$query->bindParam(':league_id', $values['league_id']);
-	$query->bindParam(':team_name', $values['team_name']);
-	$query->bindParam(':user_id', $values['user_id']);
-}
-
-/**
- * Binds the values needed to insert an enrollment record.
- *
- * @param unknown $query
- * @param unknown $values
- */
-function addEnrollmentBinding(&$query, $values) {
-	$query->bindParam(':user_id', $values['user_id']);
-	$query->bindParam(':player_id', $values['player_id']);
-	$query->bindParam(':team_id', $values['team_id']);
-	$query->bindParam(':league_id', $values['league_id']);
-	$query->bindParam(':enrollment_date', $values['enrollment_date']);
-	$query->bindParam(':fee', $values['fee']);
-}
-
-/**
- * Binds the values needed to insert a place.
- *
- * @param unknown $query
- * @param unknown $values
- */
-function addPlaceBinding(&$query, $values) {
-	$query->bindParam(':place_name', $values['place_name']);
-	$query->bindParam(':street_address', $values['street_address']);
-	$query->bindParam(':city', $values['city']);
-	$query->bindParam(':state', $values['state']);
-	$query->bindParam(':zip', $values['zip']);
-	$query->bindParam(':fee', $values['fee']);
-}
-
-/**
- * Binds the values needed to insert an event.
- *
- * @param unknown $query
- * @param unknown $values
- */
-function addEventBinding(&$query, $values) {
-	$query->bindParam(':event_type', $values['event_type']);
-	$query->bindParam(':start_date', $values['start_date']);
-	$query->bindParam(':place_id', $values['place_id']);
-	$query->bindParam(':home_team_id', $values['home_team_id']);
-	$query->bindParam(':away_team_id', $values['away_team_id']);
-}
 
 /**
  * Insert operation.
@@ -240,7 +152,7 @@ function selectOperation($values) {
         	 * SPORT TABLE SELECT OPTIONS
         	 */
             case 'SPORTS':
-            		switch($values['command']) {
+            		switch($values['option']) {
             			case 'get_all':
             				$query = $db->prepare(GET_ALL_SPORTS);
             				break;
@@ -260,7 +172,7 @@ function selectOperation($values) {
              * LEAGUE TABLE SELECT OPTIONS 
              */
             case 'LEAGUE':
-            	switch($values['command']) {
+            	switch($values['option']) {
             		case 'get_all':
             			$query = $db->prepare(GET_ALL_LEAGUES);
             			break;
@@ -283,7 +195,7 @@ function selectOperation($values) {
 			 * USER TABLE SELECT OPTIONS
 			 */
             case 'USERS':
-            	switch($values['command']) {
+            	switch($values['option']) {
             		case 'get_all':
             			$query = $db->prepare(GET_ALL_USERS);
             			break;
@@ -300,7 +212,7 @@ function selectOperation($values) {
              * TEAM TABLE SELECT OPTIONS
              */
             case 'TEAM':
-            	switch($values['command']) {
+            	switch($values['option']) {
             		case 'get_all':
             			$query = $db->prepare(GET_ALL_TEAMS);
             			break;
@@ -314,7 +226,7 @@ function selectOperation($values) {
                 break;
             
             case 'PLAYER':
-            	switch($values['command']){
+            	switch($values['option']){
             		case 'get_all':
             			$query = $db->prepare(GET_ALL_PLAYERS);
             		break;
@@ -337,7 +249,7 @@ function selectOperation($values) {
              * ENROLLMENT TABLE SELECT OPTIONS
              */
             case 'ENROLLMENT':
-            	switch($values['command']) {
+            	switch($values['option']) {
             		case 'get_all':
             			$query = $db->prepare(GET_ALL_ENROLLMENT);
             			break;
@@ -354,7 +266,7 @@ function selectOperation($values) {
              * PLACE TABLE SELECT OPTIONS
              */
             case 'PLACE':
-            	switch($values['command']) {
+            	switch($values['option']) {
             		case 'get_all':
             			$query = $db->prepare(GET_ALL_PLACES);
             			break;
@@ -368,7 +280,7 @@ function selectOperation($values) {
              * EVENTS TABLE SELECT OPTIONS
              */
             case 'EVENTS':
-            	switch($values['command']) {
+            	switch($values['option']) {
             		case 'get_all':
             			$query = $db->prepare(GET_ALL_EVENTSS);
             			break;
@@ -406,7 +318,7 @@ function updateOperation($values) {
 			 * SPORT TABLE UPDATE OPTIONS
 			 */
 			case 'SPORTS':
-				switch($values['command']) {
+				switch($values['option']) {
 
 				}
 				break;
@@ -415,7 +327,7 @@ function updateOperation($values) {
 				 * LEAGUE TABLE UPDATE OPTIONS
 				 */
 			case 'LEAGUE':
-				switch($values['command']) {
+				switch($values['option']) {
 
 				}
 	
@@ -424,7 +336,7 @@ function updateOperation($values) {
 				 * USER TABLE UPDATE OPTIONS
 				 */
 			case 'USERS':
-				switch($values['command']) {
+				switch($values['option']) {
 
 				}
 				break;
@@ -433,7 +345,7 @@ function updateOperation($values) {
 				 * TEAM TABLE UPDATE OPTIONS
 				 */
 			case 'TEAM':
-				switch($values['command']) {
+				switch($values['option']) {
 					case 'update_team_name':
 						$query = $db->prepare(UPDATE_TEAM_NAME);
 						break;
@@ -444,7 +356,7 @@ function updateOperation($values) {
 				break;
 	
 			case 'PLAYER':
-				switch($values['command']){
+				switch($values['option']){
 
 				}
 				break;
@@ -453,7 +365,7 @@ function updateOperation($values) {
 				 * ENROLLMENT TABLE UPDATE OPTIONS
 				 */
 			case 'ENROLLMENT':
-				switch($values['command']) {
+				switch($values['option']) {
 	
 				}
 				break;
@@ -462,7 +374,7 @@ function updateOperation($values) {
 				 * PLACE TABLE UPDATE OPTIONS
 				 */
 			case 'PLACE':
-				switch($values['command']) {
+				switch($values['option']) {
 	
 				}
 				break;
@@ -471,7 +383,7 @@ function updateOperation($values) {
 				 * EVENTS TABLE UPDATE OPTIONS
 				 */
 			case 'EVENTS':
-				switch($values['command']) {
+				switch($values['option']) {
 
 				}
 				break;
@@ -501,8 +413,11 @@ function deleteOperation($values) {
 			 * SPORT TABLE DELETE OPTIONS
 			 */
 			case 'SPORTS':
-				switch($values['command']) {
-
+				switch($values['option']) {
+					case 'delete_by_id':
+						break;
+					case 'delete_all':
+						break;
 				}
 				break;
 					
@@ -510,17 +425,24 @@ function deleteOperation($values) {
 				 * LEAGUE TABLE DELETE OPTIONS
 				 */
 			case 'LEAGUE':
-				switch($values['command']) {
-
+				switch($values['option']) {
+					case 'delete_by_id':
+						break;
+					case 'delete_all':
+						break;
 				}
+				break;
 
 					
 				/*
 				 * USER TABLE DELETE OPTIONS
 				 */
 			case 'USERS':
-				switch($values['command']) {
-
+				switch($values['option']) {
+					case 'delete_by_id':
+						break;
+					case 'delete_all':
+						break;
 				}
 				break;
 
@@ -528,19 +450,20 @@ function deleteOperation($values) {
 				 * TEAM TABLE DELETE OPTIONS
 				 */
 			case 'TEAM':
-				switch($values['command']) {
-					case 'DELETE_team_name':
-						$query = $db->prepare(UPDATE_TEAM_NAME);
+				switch($values['option']) {
+					case 'delete_by_id':
 						break;
-					case 'update_team_coach':
-						$query = $db->prepare(UPDATE_TEAM_COACH);
+					case 'delete_all':
 						break;
 				}
 				break;
 
 			case 'PLAYER':
-				switch($values['command']){
-
+				switch($values['option']) {
+					case 'delete_by_id':
+						break;
+					case 'delete_all':
+						break;
 				}
 				break;
 					
@@ -548,8 +471,11 @@ function deleteOperation($values) {
 				 * ENROLLMENT TABLE DELETE OPTIONS
 				 */
 			case 'ENROLLMENT':
-				switch($values['command']) {
-
+				switch($values['option']) {
+					case 'delete_by_id':
+						break;
+					case 'delete_all':
+						break;
 				}
 				break;
 
@@ -557,8 +483,11 @@ function deleteOperation($values) {
 				 * PLACE TABLE DELETE OPTIONS
 				 */
 			case 'PLACE':
-				switch($values['command']) {
-
+				switch($values['option']) {
+					case 'delete_by_id':
+						break;
+					case 'delete_all':
+						break;
 				}
 				break;
 
@@ -566,18 +495,21 @@ function deleteOperation($values) {
 				 * EVENTS TABLE DELETE OPTIONS
 				 */
 			case 'EVENTS':
-				switch($values['command']) {
-
+				switch($values['option']) {
+					case 'delete_by_id':
+						break;
+					case 'delete_all':
+						break;
 				}
 				break;
 		}
 
 		if($query != null) {
-			$result = doPrepUpdate($query);
+			$result = doPrepDelete($query);
 		}
 		echo json_encode($result);
 	}
-	//echo "end select operation\r\n"
+	//echo "end delete operation\r\n"
 }
 
 /**
