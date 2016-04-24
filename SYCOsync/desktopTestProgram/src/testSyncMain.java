@@ -59,15 +59,15 @@ public class testSyncMain {
 	}
 	
 	public static void main(String[] args) {
-		//debugPHP_ON();				
-		debugPHP_OFF();
+		debugPHP_ON();				
+		//debugPHP_OFF();
 		//debugLocal_ON();
 		debugLocal_OFF();
 		
-		userValidationTests.testUserValidation();
+		//userValidationTests.testUserValidation();
 		//AdminTests.testAdminGetAllData();
-		//AdminTests.testAdminCreateUsers(3, 4, 6);
-		//AdminTests.testAdminCreateTeams(1, 15, 15);
+		AdminTests.testAdminCreateUsers(3, 4, 6);
+		AdminTests.testAdminCreateTeams(1, 15, 15);
 		//AdminTests.testAdminCreateLeagues(10);
 		/*
 		PuppyStuffer stuffer = new PuppyStuffer();

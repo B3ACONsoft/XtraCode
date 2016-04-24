@@ -19,14 +19,14 @@ public class UserValidationTests {
 	 * 			validUserCreds
 	 */
 	public void testUserValidation() {
-		/*
+		
 		System.out.println(RemoteConnection.doPostRequest(TestCommands.CheckUserValidation.validCredentials));
 		System.out.println(RemoteConnection.doPostRequest(TestCommands.CheckUserValidation.noUserName));
 		System.out.println(RemoteConnection.doPostRequest(TestCommands.CheckUserValidation.noPassword));
 		System.out.println(RemoteConnection.doPostRequest(TestCommands.CheckUserValidation.validCoachCredentials));
 		System.out.println(RemoteConnection.doPostRequest(TestCommands.CheckUserValidation.validUserCredentials));
-		*/
-		System.out.println(RemoteConnection.doPostRequest(TestCommands.CheckUserValidation.patrickCurrinCredentials));
+		
+		//System.out.println(RemoteConnection.doPostRequest(TestCommands.CheckUserValidation.patrickCurrinCredentials));
 		
 	}
 }

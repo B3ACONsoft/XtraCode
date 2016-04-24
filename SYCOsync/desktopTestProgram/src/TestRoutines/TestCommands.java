@@ -87,6 +87,7 @@ public final class TestCommands {
 				adminGetsAllSports.put("password", "PASSWORD");
 				adminGetsAllSports.put("command", "SELECT");
 				adminGetsAllSports.put("table", "SPORTS");
+				adminGetsAllSports.put("option", "get_all");
 			}
 		};
 		

@@ -1,10 +1,12 @@
 <?php
-include 'dbProperties.php';
-
+//include 'dbProperties.php';
+include 'dbPrepBinding.php';
+		
 /**
  * The gobal database connection object.
  */
 $db;
+$dbBindingClass;
 
 /**
  * Establish a connection to the global database connection object.
@@ -16,6 +18,9 @@ function connectToDB() {
 	try {
 		$db = new PDO(DSN, USERNAME, PASSWORD);
 		//echo "You are connected to the database.\r\n\r\n";
+		
+		//now we init the db binding class on db init success
+		$dbBindingClass = new dbPrep($db);
 	}catch(PDOException $e){
 		$error_message = $e->getMessage();
 		echo "An error occurred while connecting to the database:
@@ -87,32 +92,32 @@ function insertOperation($values) {
     if($db != null) {
             switch($values['table_name']) {
             case 'SPORTS':
-                $query = $db->prepare(ADD_SPORT);
-                addSportBinding($query, $values);
+                //$query = $db->prepare(ADD_SPORT);
+                $query = addSportBinding($values);
                 break;
             case 'LEAGUE':
-                $query = $db->prepare(ADD_LEAGUE);
-                addLeagueBinding($query, $values);
+                //$query = $db->prepare(ADD_LEAGUE);
+                $query = addLeagueBinding($values);
                 break;
             case 'USERS':
-                $query = $db->prepare(ADD_USER);
-                addUserBinding($query, $values);
+                //$query = $db->prepare(ADD_USER);
+                $query = addUserBinding($values);
                 break;
             case 'TEAM':
-                $query = $db->prepare(ADD_TEAM);
-                addTeamBinding($query, $values);
+                //$query = $db->prepare(ADD_TEAM);
+                $query = addTeamBinding($values);
                 break;
             case 'ENROLLMENT':
-                $query = $db->prepare(ADD_ENROLLMENT);
-                addEnrollmentBinding($query, $values);
+                //$query = $db->prepare(ADD_ENROLLMENT);
+                $query = addEnrollmentBinding($values);
                 break;
             case 'PLACE':
-                $query = $db->prepare(ADD_PLACE);
-                addPlaceBinding($query, $values);
+                //$query = $db->prepare(ADD_PLACE);
+                $query = addPlaceBinding($values);
                 break;
             case 'EVENTS':
-                $query = $db->prepare(ADD_EVENT);
-                addEventBinding($query, $values);
+                //$query = $db->prepare(ADD_EVENT);
+                $query = addEventBinding($values);
                 break;
             }
             if($query != null) {

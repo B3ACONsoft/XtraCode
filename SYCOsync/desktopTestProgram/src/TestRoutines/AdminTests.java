@@ -51,6 +51,38 @@ public class AdminTests {
 		return RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllEvents);
 	}
 	
+	/*
+	 * ATTENTION ATTENTION
+	 * PUT THIS IN ANDROID!!!!
+	 * 
+	 * REMOVES NETAI CRAP...
+	 * 
+	 * 
+	 */
+	public static String parseNetaiCrap(String netai_crap) {
+		String retVal = netai_crap;
+		
+		/*
+		 * We assume that server should return a vaild JSON string.
+		 * So it should begin with a "["
+		 * If not, then it really has returned crap.
+		 */
+		if(netai_crap.startsWith("[")) {
+			/*
+			 * We start at the end of the server response because
+			 * in most cases there will be less data to get through.
+			 */
+			for(int i = netai_crap.length()-1; i >= 0; i--) {
+				if(netai_crap.charAt(i) == ']') {
+					retVal = netai_crap.substring(0, i+1);
+					break;
+				}
+					
+			}
+		}
+		
+		return retVal;
+	}
 	/**
 	 * Sends the following commands to the server
 	 * 	adminGetsAllSports
@@ -64,13 +96,13 @@ public class AdminTests {
 	 * Should print a JSON formated string for each command to the console
 	 */
 	public static void testAdminGetAllData() {
-		System.out.println(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllSports));
-		System.out.println(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllLeagues));
-		System.out.println(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllUsers));
-		System.out.println(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllTeams));
-		System.out.println(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllEnrollment));
-		System.out.println(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllPlaces));
-		System.out.println(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllEvents));
+		System.out.println(parseNetaiCrap(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllSports)));
+		System.out.println(parseNetaiCrap(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllLeagues)));
+		System.out.println(parseNetaiCrap(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllUsers)));
+		System.out.println(parseNetaiCrap(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllTeams)));
+		System.out.println(parseNetaiCrap(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllEnrollment)));
+		System.out.println(parseNetaiCrap(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllPlaces)));
+		System.out.println(parseNetaiCrap(RemoteConnection.doPostRequest(TestCommands.TestAdminSync.adminGetsAllEvents)));
 	}
 	
 	/**
