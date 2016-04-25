@@ -4,209 +4,194 @@ error_reporting(E_ALL);
 
 include 'dbProperties.php';
 
-/*
- * This class encapulates the bind for the prepared statements
- * so I can all that damn code out of the dbConnection class :)
- * 
- * This class is pretty tightly coupled to the PDO object that is used in its constuctor...
- */
 class dbPrep {
 	
 	private $dbReference; 
 	
-	function __construct($dbReference) {
+	public function __construct($dbReference) {
 		this.$dbReference = $dbReference;
 	}
 	
 	
 	///////////////////////////////////////
-	/*
-	 * 	SELECT BINDINGS
-	 */
+	//SELECT BINDINGS
 	///////////////////////////////////////
 	
-	/*
-	 * USER
-	 */
-	function getUserByEmailBinding($values) {
+	//USER
+	
+	public function getUserByEmailBinding($values) {
 		$query = $dbReference->prepare(GET_USER_BY_EMAIL);
 		
 		return $query;
 	}
 	
-	function getUserByIdBinding($values) {
+	
+	public function getUserByIdBinding($values) {
 		$query = $dbReference->prepare(GET_USER_BY_ID);
 	
 		return $query;
 	}
 	
-	function getUserByCoachBinding($values) {
+	public function getUserByCoachBinding($values) {
 		$query = $dbReference->prepare(GET_USER_BY_COACH);
 	
 		return $query;
 	}
 	
-	function getUserByTeamBinding($values) {
+	public function getUserByTeamBinding($values) {
 		$query = $dbReference->prepare(GET_USER_BY_TEAM);
 	
 		return $query;
 	}
 	
-	/*
-	 * PLAYER
-	 */
-	function getPlayerByTeamBinding($values) {
+	//PLAYER
+	
+	
+	public function getPlayerByTeamBinding($values) {
 		$query = $dbReference->prepare(GET_PLAYER_BY_TEAM);
 	
 		return $query;
 	}
 	
-	function getPlayerByIdBinding($values) {
+	public function getPlayerByIdBinding($values) {
 		$query = $dbReference->prepare(GET_PLAYER_BY_ID);
 	
 		return $query;
 	}
 	
-	function getPlayerByFirstLastPlayerIdBinding($values) {
+	public function getPlayerByFirstLastPlayerIdBinding($values) {
 		$query = $dbReference->prepare(GET_PLAYER_BY_FIRST_LAST_PLAYERID);
 	
 		return $query;
 	}
 	
-	function getPlayerByFirstLastUserIdBinding($values) {
+	public function getPlayerByFirstLastUserIdBinding($values) {
 		$query = $dbReference->prepare(GET_PLAYER_BY_FIRST_LAST_USER_ID);
 	
 		return $query;
 	}
 	
-	/*
-	 * SPORT
-	 */
-	function getSportsByCoachBinding($values) {
+	
+	//SPORT
+	
+	public function getSportsByCoachBinding($values) {
 		$query = $dbReference->prepare(GET_SPORTS_BY_COACH);
 	
 		return $query;
 	}
 	
-	function getSportsByAdminBinding($values) {
+	public function getSportsByAdminBinding($values) {
 		$query = $dbReference->prepare(GET_SPORTS_BY_ADMIN);
 	
 		return $query;
 	}
 	
-	function getSportByNameBinding($values) {
+	public function getSportByNameBinding($values) {
 		$query = $dbReference->prepare(GET_SPORT_BY_NAME);
 	
 		return $query;
 	}
 	
-	/*
-	 * TEAM
-	 */
-	function getTeamByTeamIdBinding($values) {
+	//TEAM
+	
+	public function getTeamByTeamIdBinding($values) {
 		$query = $dbReference->prepare(GET_TEAM_BY_TEAM_ID);
 	
 		return $query;
 	}
 	
-	function getTeamByCoachBinding($values) {
+	public function getTeamByCoachBinding($values) {
 		$query = $dbReference->prepare(GET_TEAM_BY_COACH_ID);
 	
 		return $query;
 	}
 	
-	function getTeamsByLeagueBinding($values) {
+	public function getTeamsByLeagueBinding($values) {
 		$query = $dbReference->prepare(GET_TEAM_BY_LEAGUE);
 	
 		return $query;
 	}
 	
-	/*
-	 * LEAGUE
-	 */
-	function getLeaguesByCoachAndSportBinding($values) {
+	
+	 //LEAGUE
+	 
+	public function getLeaguesByCoachAndSportBinding($values) {
 		$query = $dbReference->prepare(GET_LEAGUES_BY_COACH_AND_SPORT);
 	
 		return $query;
 	}
 	
-	function getLeaguesByIdBinding($values) {
+	public function getLeaguesByIdBinding($values) {
 		$query = $dbReference->prepare(GET_LEAGUES_BY_ID);
 	
 		return $query;
 	}
 	
-	function getLeaguesByAdminIdSportIdBinding($values) {
+	public function getLeaguesByAdminIdSportIdBinding($values) {
 		$query = $dbReference->prepare(GET_LEAGUES_BY_ADMINID_SPORTID);
 	
 		return $query;
 	}
 	
-	function getLeaguesBySportIdBinding($values) {
+	public function getLeaguesBySportIdBinding($values) {
 		$query = $dbReference->prepare(GET_LEAGUES_BY_SPORTID);
 	
 		return $query;
 	}
-	/*
-	 * EVENT
-	 */
-	function getEventByTeamBinding($values) {
+	
+	//EVENT 
+	
+	public function getEventByTeamBinding($values) {
 		$query = $dbReference->prepare(GET_EVENTS_BY_TEAM);
 	
 		return $query;
 	}
 	
-	function getEventByPlaceIdBinding($values) {
+	public function getEventByPlaceIdBinding($values) {
 		$query = $dbReference->prepare(GET_EVENTS_BY_PLACEID);
 	
 		return $query;
 	}
 	
 
-	/*
-	 * PLACE
-	 */
-	function getPlaceByIdBinding($values) {
+	//PLACE
+	
+	public function getPlaceByIdBinding($values) {
 		$query = $dbReference->prepare(GET_PLACE_BY_ID);
 	
 		return $query;
 	}
-	/*
-	 * ENROLLMENT
-	 */
-	function getEnrollmentByUserIdLeagueIdTeamIdBinding($values) {
+	
+	
+	//ENROLLMENT
+	
+	public function getEnrollmentByUserIdLeagueIdTeamIdBinding($values) {
 		$query = $dbReference->prepare(GET_ENROLLMENT_BY_USER_ID_LEAGUEID_TEAMID);
 	
 		return $query;
 	}
 	
-	function getEnrollmentBy_playerid_userid_currentleague_currentteam_Binding($values) {
+	public function getEnrollmentBy_playerid_userid_currentleague_currentteam_Binding($values) {
 		$query = $dbReference->prepare(GET_ENROLLMENT_BY_PLAYERID_USERID_CURRENTLEAGUE_CURRENTTEAM);
 	
 		return $query;
 	}
-	/*
-	 * ATTENDANCE
-	 */
+	
+	//ATTENDANCE
+	
 	///////////////////////////////////////
-	/*
-	 * INSERT BINDINGS
-	 */
+	//INSERT BINDINGS
 	////////////////////////////////////////
-	/**
-	 * Binds the values needed to insert a sport
-	 */
-	function addSportBinding($values) {
+	
+	
+	public function addSportBinding($values) {
 		$query = $dbReference->prepare(ADD_SPORT);
 		$query->bindParam(':sport_name', $values['sport_name']);
 		
 		return $query;
 	}
-	
-	/**
-	 * Binds the values needed to insert a league
-	 */
-	function addLeagueBinding($values) {
+
+	public function addLeagueBinding($values) {
 		
 		$query = $dbReference->prepare(ADD_LEAGUE);
 		
@@ -220,13 +205,8 @@ class dbPrep {
 		return $query;
 	}
 	
-	/**
-	 * Binds the values needed to insert a user.
-	 *
-	 * @param unknown $query
-	 * @param unknown $values
-	 */
-	function addUserBinding($values) {
+	
+	public function addUserBinding($values) {
 		
 		$query = $dbReference->prepare(ADD_USER);
 		
@@ -241,10 +221,8 @@ class dbPrep {
 		return $query;
 	}
 	
-	/**
-	 * Binds the values needed to insert a team
-	 */
-	function addTeamBinding($values) {
+	
+	public function addTeamBinding($values) {
 		
 		$query = $dbReference->prepare(ADD_TEAM);
 		
@@ -255,13 +233,8 @@ class dbPrep {
 		return $query;
 	}
 	
-	/**
-	 * Binds the values needed to insert an enrollment record.
-	 *
-	 * @param unknown $query
-	 * @param unknown $values
-	 */
-	function addEnrollmentBinding($values) {
+
+	public function addEnrollmentBinding($values) {
 		
 		$query = $dbReference->prepare(ADD_ENROLLMENT);
 		
@@ -275,13 +248,8 @@ class dbPrep {
 		return $query;
 	}
 	
-	/**
-	 * Binds the values needed to insert a place.
-	 *
-	 * @param unknown $query
-	 * @param unknown $values
-	 */
-	function addPlaceBinding($values) {
+	
+	public function addPlaceBinding($values) {
 		
 		$query = $dbReference->prepare(ADD_PLACE);
 		
@@ -295,13 +263,8 @@ class dbPrep {
 		return $query;
 	}
 	
-	/**
-	 * Binds the values needed to insert an event.
-	 *
-	 * @param unknown $query
-	 * @param unknown $values
-	 */
-	function addEventBinding($values) {
+	
+	public function addEventBinding($values) {
 		
 		$query = $dbReference->prepare(ADD_EVENT);
 		
@@ -315,47 +278,45 @@ class dbPrep {
 	}
 	
 	///////////////////////////////////////
-	/*
-	 * UPDATE BINDINGS
-	 */
+	//UPDATE BINDINGS
 	////////////////////////////////////////
 	
-	function updateSportAllValuesBinding($values) {
+	public function updateSportAllValuesBinding($values) {
 		
 		$query = $dbReference->prepare(UPDATE_SPORT_ALL_VALUES);
 		
 		return $query;
 	}
 	
-	function updateTeamCoachBinding($values) {
+	public function updateTeamCoachBinding($values) {
 	
 		$query = $dbReference->prepare(UPDATE_TEAM_COACH);
 	
 		return $query;
 	}
 	
-	function updateTeamNameBinding($values) {
+	public function updateTeamNameBinding($values) {
 	
 		$query = $dbReference->prepare(UPDATE_TEAM_NAME);
 	
 		return $query;
 	}
 	
-	function updateTeamCoachBinding($values) {
+	public function updateTeamCoachBinding($values) {
 	
 		$query = $dbReference->prepare(UPDATE_TEAM_BY_COACH);
 	
 		return $query;
 	}
 	
-	function updateSportAllValuesBinding($values) {
+	public function updateSportAllValuesBinding($values) {
 	
 		$query = $dbReference->prepare(UPDATE_LEAGUE_ALL_VALUES);
 	
 		return $query;
 	}
 	
-	function updateAttendanceBinding($values) {
+	public function updateAttendanceBinding($values) {
 	
 		$query = $dbReference->prepare(ADMIN_UPDATE_ATTENDANCE_STATUS_MESSAGE);
 	
@@ -363,54 +324,56 @@ class dbPrep {
 	}
 	
 	///////////////////////////////////////
-	/*
-	 * DELETE BINDINGS
-	 */
+	//DELETE BINDINGS
 	////////////////////////////////////////
 	
-	function deleteUserByIdBinding($values) {
+	/*
+	public function deleteUserByIdBinding($values) {
 	
 		$query = $dbReference->prepare(DELETE_USER_BY_ID);
 	
 		return $query;
 	}
 	
-	function deletePlayerByIdBinding($values) {
+	public function deletePlayerByIdBinding($values) {
 	
 		$query = $dbReference->prepare(DELETE_PLAYER_BY_ID);
 	
 		return $query;
 	}
 	
-	function deleteLeagueByIdBinding($values) {
+	public function deleteLeagueByIdBinding($values) {
 	
 		$query = $dbReference->prepare(DELETE_LEAGUE_BY_ID);
 	
 		return $query;
 	}
 	
-	function deleteTeamByIdBinding($values) {
+	public function deleteTeamByIdBinding($values) {
 	
 		$query = $dbReference->prepare(DELETE_TEAM_BY_ID);
 	
 		return $query;
 	}
 	
-	function deleteSportByIdBinding($values) {
+	public function deleteSportByIdBinding($values) {
 	
 		$query = $dbReference->prepare(DELETE_SPORT_BY_ID);
 	
 		return $query;
 	}
 	
-	function deleteEventByIdBinding($values) {
+	global $db;
+	$query = $db->prepare(GET_USER_BY_EMAIL);
+	
+	public function deleteEventByIdBinding($values) {
 	
 		$query = $dbReference->prepare(DELETE_EVENT_BY_ID);
 	
 		return $query;
 	}
 	
-	function deletePlaceByIdBinding($values) {
+	public function deletePlaceByIdBinding($values) {
 	
 		$query = $dbReference->prepare(DELETE_PLACE_BY_ID);
 	
@@ -418,5 +381,6 @@ class dbPrep {
 	}
 	
 	//TODO DELETE ATTENDANCE BINDING
+*/
 }
 ?>

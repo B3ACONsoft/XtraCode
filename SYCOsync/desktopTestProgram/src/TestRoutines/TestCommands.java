@@ -99,6 +99,7 @@ public final class TestCommands {
 				adminGetsAllLeagues.put("password", "PASSWORD");
 				adminGetsAllLeagues.put("command", "SELECT");
 				adminGetsAllLeagues.put("table", "LEAGUE");
+				adminGetsAllLeagues.put("option", "get_all");
 			}
 		};
 		
@@ -110,6 +111,7 @@ public final class TestCommands {
 				adminGetsAllUsers.put("password", "PASSWORD");
 				adminGetsAllUsers.put("command", "SELECT");
 				adminGetsAllUsers.put("table", "USERS");
+				adminGetsAllUsers.put("option", "get_all");
 			}
 		};
 		
@@ -122,6 +124,7 @@ public final class TestCommands {
 				adminGetsAllTeams.put("password", "PASSWORD");
 				adminGetsAllTeams.put("command", "SELECT");
 				adminGetsAllTeams.put("table", "TEAM");
+				adminGetsAllTeams.put("option", "get_all");
 			}
 		};
 		
@@ -133,6 +136,7 @@ public final class TestCommands {
 				adminGetsAllEnrollment.put("password", "PASSWORD");
 				adminGetsAllEnrollment.put("command", "SELECT");
 				adminGetsAllEnrollment.put("table", "ENROLLMENT");
+				adminGetsAllEnrollment.put("option", "get_all");
 			}
 		};
 		
@@ -144,6 +148,7 @@ public final class TestCommands {
 				adminGetsAllPlaces.put("password", "PASSWORD");
 				adminGetsAllPlaces.put("command", "SELECT");
 				adminGetsAllPlaces.put("table", "PLACE");
+				adminGetsAllPlaces.put("option", "get_all");
 			}
 		};
 		
@@ -155,6 +160,7 @@ public final class TestCommands {
 				adminGetsAllEvents.put("password", "PASSWORD");
 				adminGetsAllEvents.put("command", "SELECT");
 				adminGetsAllEvents.put("table", "EVENTS");
+				adminGetsAllEvents.put("option", "get_all");
 			}
 		};
 		
