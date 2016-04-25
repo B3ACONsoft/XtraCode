@@ -617,8 +617,8 @@ function selectOperation($values) {
             			$query = getLeaguesBySportIdBinding($values);
             			break;
             	}
-
-            	
+				break;
+       
 			/*
 			 * USER TABLE SELECT OPTIONS
 			 */
@@ -627,11 +627,17 @@ function selectOperation($values) {
             		case 'get_all':
             			$query = $db->prepare(GET_ALL_USERS);
             			break;
+            		case 'get_user_by_email':
+            			$query = getUserByEmailBinding(GET_USERS_BY_COACH);
+            			break;
+            		case 'get_user_by_id':
+            			$query = getUserByIdBinding(GET_USERS_BY_COACH);
+            			break;
             		case 'get_users_by_coach':
-            			$query = $db->prepare(GET_USERS_BY_COACH);
+            			$query = getUserByCoachBinding(GET_USERS_BY_COACH);
             			break;
             		case 'get_users_by_team':
-            			$query = $db->prepare(GET_USERS_BY_TEAM);
+            			$query = getUserByTeamBinding(GET_USERS_BY_TEAM);
             			break;
             	}
                 break;
@@ -644,35 +650,42 @@ function selectOperation($values) {
             		case 'get_all':
             			$query = $db->prepare(GET_ALL_TEAMS);
             			break;
+            		case 'get_team_by_id':
+            			$query = getTeamByTeamIdBinding(GET_TEAMS_BY_LEAGUE);
+            			break;
             		case 'get_teams_by_coach':
-            			$query = $db->prepare(GET_TEAMS_BY_COACH);
+            			$query = getTeamByCoachBinding(GET_TEAMS_BY_LEAGUE);
             			break;
             		case 'get_teams_by_league':
-            			$query = $db->prepare(GET_TEAMS_BY_LEAGUE);
+            			$query = getTeamsByLeagueBinding(GET_TEAMS_BY_LEAGUE);
             			break;
             	}
                 break;
             
+        	/*
+        	 * PLAYER TABLE SELECT OPTIONS
+        	 */
             case 'PLAYER':
             	switch($values['option']){
             		case 'get_all':
             			$query = $db->prepare(GET_ALL_PLAYERS);
             		break;
             		case 'get_players_by_team':
-            			$query = $db->prepare(GET_PLAYERS_TEAM);
+            			$query = getPlayerByTeamBinding(GET_PLAYERS_TEAM);
             			break;
             		case 'get_player_by_id':
-            			$query = $db->prepare(GET_PLAYER_BY_ID);
+            			$query = getPlayerByIdBinding(GET_PLAYER_BY_ID);
             			break;
             		case 'get_player_by_first_last_playerid':
-            			$query = $db->prepare(GET_PLAYER_BY_FIRST_LAST_PLAYER_ID);
+            			$query = getPlayerByFirstLastPlayerIdBinding(GET_PLAYER_BY_FIRST_LAST_PLAYER_ID);
             			break;
             		case 'get_player_by_first_last_userid':
-            			$query = $db->prepare(GET_PLAYER_BY_FIRST_LAST_USER_ID);
+            			$query = getPlayerByFirstLastUserIdBinding(GET_PLAYER_BY_FIRST_LAST_USER_ID);
             			break;
             	}
             	break;
             	
+           
             /*
              * ENROLLMENT TABLE SELECT OPTIONS
              */
@@ -682,13 +695,15 @@ function selectOperation($values) {
             			$query = $db->prepare(GET_ALL_ENROLLMENT);
             			break;
             		case 'get_enrollment_by_userid_leagueid_teamid':
-            			$query = $db->prepare(GET_ENROLLMENT_BY_USERID_LEAGUEID_TEAMID);
+            			$query = getEnrollmentByUserIdLeagueIdTeamIdBinding(GET_ENROLLMENT_BY_USERID_LEAGUEID_TEAMID);
             			break;
             		case 'get_enrollment_by_playerid_userid_currentleague_currentteam':
-            			$query = $db->prepare(GET_ENROLLMENT_BY_PLAYERID_USERID_CURRENTLEAGUE_CURRENTTEAM);
+            			$query = getEnrollmentBy_playerid_userid_currentleague_currentteam_Binding(GET_ENROLLMENT_BY_PLAYERID_USERID_CURRENTLEAGUE_CURRENTTEAM);
             			break;
             	}
                 break;
+                
+           
                 
             /*
              * PLACE TABLE SELECT OPTIONS
@@ -699,11 +714,12 @@ function selectOperation($values) {
             			$query = $db->prepare(GET_ALL_PLACES);
             			break;
             		case 'get_place_by_id':
-            			$query = $db->prepare(GET_PLACE_BY_ID);
+            			$query = getPlaceByIdBinding(GET_PLACE_BY_ID);
             			break;
             	}
                 break;
                 
+              
             /*
              * EVENTS TABLE SELECT OPTIONS
              */
@@ -713,14 +729,21 @@ function selectOperation($values) {
             			$query = $db->prepare(GET_ALL_EVENTSS);
             			break;
             		case 'get_events_by_team':
-            			$query = $db->prepare(GET_EVENTS_BY_TEAM);
+            			$query = getEventByTeamBinding(GET_EVENTS_BY_TEAM);
             			break;
             		case 'get_events_by_placeid':
-            			$query = $db->prepare(GET_EVENTS_BY_PLACEID);
+            			$query = getEventByPlaceIdBinding(GET_EVENTS_BY_PLACEID);
             			break;
             	}
             	break;
-            }
+            	
+            case 'ATTENDANCE':
+            	switch($values['option']) {
+            		case 'get_all':
+            			$query = $db->prepare(GET_ALL_ATTENDANCE);
+            			break;
+            	}
+            	break;
             
             if($query != null) {
                 $result = doPrepSelect($query);
@@ -756,7 +779,8 @@ function updateOperation($values) {
 				 */
 			case 'LEAGUE':
 				switch($values['option']) {
-
+					case 'update_league_all_values':
+						break;
 				}
 	
 				 
@@ -815,6 +839,11 @@ function updateOperation($values) {
 
 				}
 				break;
+			case 'ATTENDANCE':
+				switch($values['option']) {
+					case 'update_message':
+						break;
+				}
 		}
 	
 		if($query != null) {
